@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./index.css";
+import Admin from "./components/admin/Admin";
+import { useCookies } from "react-cookie";
+import Broker from "./components/broker/Broker";
+import Manager from "./components/manager/Manager";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const accType = "admin";
+
+  const [cookies, setCookie] = useCookies(["token"]);
+  const [logined, setLogined] = useState(false);
+  console.log(cookies);
+
+  useEffect(() => {
+    if (!cookies.token) {
+      window.location = "http://localhost:3000";
+    } else {
+      setLogined(true);
+    }
+  }, []);
+
+  function selectAcc() {
+    switch (accType) {
+      case "admin":
+        return <Admin />;
+      case "broker":
+        return <Broker />;
+      case "manager":
+        return <Manager />;
+    }
+  }
+
+  return <>{logined && selectAcc()}</>;
 }
 
 export default App;

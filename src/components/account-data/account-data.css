@@ -1,0 +1,18 @@
+.account-data {
+    height: 90px;
+    width: 100%;
+    color: #333;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+}
+.account-img {
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}

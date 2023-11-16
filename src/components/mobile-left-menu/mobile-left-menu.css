@@ -1,0 +1,10 @@
+.open-btn {
+    background: rgb(11, 86, 236);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    height: 90px;
+    width: 100px;
+}

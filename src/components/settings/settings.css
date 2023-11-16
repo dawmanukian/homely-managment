@@ -1,0 +1,61 @@
+.settings {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.settings form {
+  background: #fff;
+  width: 500px;
+  padding: 25px;
+}
+.settings form input {
+  height: 45px;
+  padding: 0px 0px 0px 15px;
+  border: none;
+  color: #333;
+  background: #f4f4f4;
+  border-radius: 7px;
+  font-size: 15px;
+}
+.user-data {
+  display: flex;
+  justify-content: space-between;
+}
+.save-btn {
+  height: 45px;
+  width: 250px;
+  border: none;
+  background: rgb(6, 107, 6);
+  color: #fff;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.user-img {
+  object-fit: cover;
+  border: 7px solid rgb(185, 185, 185);
+}
+#change-img {
+  display: none;
+}
+.change-profile-img {
+  background: #fff;
+  color: rgb(11, 86, 236);
+  padding: 10px;
+  position: absolute;
+  bottom: -10px;
+  left: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 27px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+}
+.user-image-section {
+  display: flex;
+  justify-content: center;
+}

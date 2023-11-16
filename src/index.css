@@ -1,13 +1,75 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.left-menu {
+  min-width: 300px;
+  height: 100vh;
+  background: #246bfdff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+}
+.menu-item {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+}
+.menu-item:hover {
+  background: rgb(11, 86, 236);
+}
+.menu-item b {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.menu-icon {
+  font-size: 22px;
+}
+.page-data {
+  display: flex;
+  background: #F0F2F5FF;
+}
+.workers-page {
+  width: 100%;
+  overflow-x: auto;
+}
+.worker {
+  height: 300px;
+  padding: 20px;
+  width: 240px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+}
+.worker-img {
+  object-fit: cover;
+  border-radius: 50%;
+}
+.search-inpt {
+  height: 40px;
+  width: 350px;
+  border: none;
+  padding: 15px;
+  background: #ecebeb;
+  border-radius: 15px;
+}
+.search-inpt:focus {
+  outline: 1px solid #246bfdff;
+}
+.workers {
+  margin: 30px 0px 0px 0px;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 580px 580px;
+  grid-gap: 30px;
 }
