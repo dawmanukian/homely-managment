@@ -11,34 +11,40 @@ import {
 
 const ManagerLeftMenu = () => {
   return (
-    <div className="left-menu">
-      <div>
-        <AccountData type={'Manager'}/>
-        <Link to={"/add"}>
-          <div className="menu-item">
-            <b>
-              Ավելացնել գույք <FiPlusCircle className="menu-icon" />
-            </b>
-          </div>
-        </Link>
-        <Link to={"/all_ads"}>
-          <div className="menu-item">
-            <b>
-              Հայտարարություններ <FiDatabase className="menu-icon" />
-            </b>
-          </div>
-        </Link>
-      </div>
-      <div>
-        <div className="menu-item">
-          <b>
-            Կարգավորումններ <FiSettings className="menu-icon" />
-          </b>
+    <div
+      className="left-menu-panel"
+      style={{ width: "300px", position: "relative" }}
+    >
+      <div className="left-menu">
+        <div>
+          <Link to={"/add"}>
+            <div className="menu-item">
+              <b>
+                Ավելացնել գույք <FiPlusCircle className="menu-icon" />
+              </b>
+            </div>
+          </Link>
+          <Link to={"/all_ads"}>
+            <div className="menu-item">
+              <b>
+                Հայտարարություններ <FiDatabase className="menu-icon" />
+              </b>
+            </div>
+          </Link>
         </div>
-        <div className="menu-item">
-          <b>
-            <FiArrowLeftCircle className="menu-icon" /> Ելք
-          </b>
+        <div>
+          <Link to={"/settings"}>
+            <div className="menu-item">
+              <b>
+                Կարգավորումններ <FiSettings className="menu-icon" />
+              </b>
+            </div>
+          </Link>
+          <div className="menu-item">
+            <b>
+              <FiArrowLeftCircle className="menu-icon" /> Ելք
+            </b>
+          </div>
         </div>
       </div>
     </div>

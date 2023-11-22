@@ -15,7 +15,7 @@ const Admin = ({type}) => {
         <AdminLeftMenu type={type}/>
         <AccountData type={'Admin'}/>
         <Routes>
-          <Route path={"/add_user"} element={<AddUser />} />
+          <Route path={"/"} element={<AddUser />} />
           <Route path={"/add"} element={<AddItem />} />
           <Route path={"/managers"} element={<AllManagers />}/>
           <Route path={"/brokers"} element={<AllBrokers />} />

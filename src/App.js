@@ -10,22 +10,22 @@ function App() {
   const accType = "admin";
 
   const [cookies, setCookie] = useCookies(["token"]);
-  const [logined, setLogined] = useState(false);
+  const [logined, setLogined] = useState(true);
   console.log(cookies);
 
-  useEffect(() => {
-    if (!cookies.token) {
-      window.location = "https://homely-sigma.vercel.app/";
-    } else {
-      setLogined(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!cookies.token) {
+  //     window.location = "http://localhost:3000";
+  //   } else {
+  //     setLogined(true);
+  //   }
+  // }, []);
 
   function selectAcc() {
     switch (accType) {
       case "admin":
         return <Admin />;
-      case "broker":
+      case "broker":  
         return <Broker />;
       case "manager":
         return <Manager />;

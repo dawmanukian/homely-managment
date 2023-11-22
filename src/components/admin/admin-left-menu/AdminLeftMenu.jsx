@@ -14,7 +14,7 @@ const AdminLeftMenu = () => {
     <div className='left-menu-panel' style={{ width: "300px", position: "relative" }}>
       <div className="left-menu">
         <div>
-          <Link to={"/add_user"}>
+          <Link to={"/"}>
             <div className="menu-item">
               <b>
                 Ավելացնել օգտանուն <FiUserPlus className="menu-icon" />

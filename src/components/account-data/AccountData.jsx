@@ -13,7 +13,7 @@ const AccountData = ({ type }) => {
         <span>Դավիթ Մանուկյան</span>
         <b>{type}</b>
       </div>
-      <MobileLeftMenu />
+      <MobileLeftMenu type={type}/>
     </div>
   );
 };
