@@ -11,10 +11,9 @@ import {
 
 const AdminLeftMenu = () => {
   return (
-    <div style={{width: '300px'}}>
+    <div className='left-menu-panel' style={{ width: "300px", position: "relative" }}>
       <div className="left-menu">
         <div>
-          <AccountData type={'Admin'}/>
           <Link to={"/add_user"}>
             <div className="menu-item">
               <b>

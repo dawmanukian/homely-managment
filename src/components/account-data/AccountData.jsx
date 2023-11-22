@@ -10,8 +10,8 @@ const AccountData = ({ type }) => {
         className="account-img"
       />
       <div className="account-name">
-        <p>Դավիթ Մանուկյան</p>
-        <p>{type}</p>
+        <span>Դավիթ Մանուկյան</span>
+        <b>{type}</b>
       </div>
       <MobileLeftMenu />
     </div>

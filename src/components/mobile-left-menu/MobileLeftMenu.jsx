@@ -14,12 +14,11 @@ const MobileLeftMenu = () => {
   return (
     <div>
       <button onClick={handleShow} className="open-btn">
-        <GrMenu style={{color: "#fff"}}/>
+        <GrMenu className="drop-icon"/>
       </button>
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           Some text as placeholder. In real life you can have the elements you

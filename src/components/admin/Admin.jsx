@@ -13,6 +13,7 @@ const Admin = ({type}) => {
     <div className="page-data">
       <Router>
         <AdminLeftMenu type={type}/>
+        <AccountData type={'Admin'}/>
         <Routes>
           <Route path={"/add_user"} element={<AddUser />} />
           <Route path={"/add"} element={<AddItem />} />

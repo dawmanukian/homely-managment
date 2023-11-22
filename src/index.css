@@ -13,6 +13,7 @@
   flex-direction: column;
   justify-content: space-between;
   position: fixed;
+  z-index: 5;
 }
 .menu-item {
   height: 100px;
@@ -72,4 +73,14 @@
   justify-content: center;
   grid-template-columns: 580px 580px;
   grid-gap: 30px;
+}
+@media screen and (max-width: 1220px){
+  .workers {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 1570px){
+  .left-menu-panel {
+    display: none;
+  }
 }

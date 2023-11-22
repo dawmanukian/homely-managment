@@ -1,10 +1,18 @@
 .open-btn {
-    background: rgb(11, 86, 236);
-    border: none;
+  background: rgb(11, 86, 236);
+  border: none;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  height: 90px;
+  width: 100px;
+  display: none;
+}
+.drop-icon {
+  font-size: 23px;
+}
+@media screen and (max-width: 1570px) {
+  .open-btn {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    height: 90px;
-    width: 100px;
+  }
 }

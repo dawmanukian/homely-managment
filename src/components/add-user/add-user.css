@@ -66,3 +66,8 @@
   border-radius: 7px;
   color: gray;
 }
+@media screen and (max-width: 525px){
+  .add-user .add-inpt {
+    width: 100%;
+  }
+}
