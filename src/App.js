@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     if (!cookies.token) {
-      window.location = "http://localhost:3000";
+      window.location = "https://homely-sigma.vercel.app/";
     } else {
       setLogined(true);
     }
