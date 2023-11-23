@@ -68,3 +68,9 @@
     width: auto;
   }
 }
+@media screen and (max-height: 820px){
+  .settings {
+    height: 800px;
+    align-items: flex-end
+  }
+}

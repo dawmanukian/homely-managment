@@ -86,8 +86,10 @@
 }
 .offcanvas-body .left-menu {
   background: none;
+  justify-content: flex-start;
 }
 .offcanvas-body .left-menu .menu-item {
+  height: 70px;
   color: gray;
 }
 .offcanvas-body .left-menu .menu-item:hover {
