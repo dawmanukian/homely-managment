@@ -1,0 +1,43 @@
+.add-item {
+  margin-top: 65px;
+  min-height: 100vh;
+  padding: 35px;
+}
+.item-type {
+  height: 45px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 20px;
+  cursor: pointer;
+}
+.item-type-panel {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.select-item-panel {
+  margin: 20px 0px 0px 0px;
+}
+.header-inpts textarea {
+  height: 150px;
+  padding: 15px;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 8px;
+  resize: none;
+}
+.header-inpts input {
+  height: 50px;
+  padding: 15px;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 8px;
+}
+.header-inpts {
+  display: grid;
+  grid-gap: 10px;
+}
+.item-headers {
+  display: grid;
+  grid-gap: 15px;
+}

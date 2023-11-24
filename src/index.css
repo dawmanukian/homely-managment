@@ -73,6 +73,7 @@
   justify-content: center;
   grid-template-columns: 580px 580px;
   grid-gap: 30px;
+  padding: 0px 0px 25px 0px;
 }
 .offcanvas-body .left-menu a {
   text-decoration: none;
