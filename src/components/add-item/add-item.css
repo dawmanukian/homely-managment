@@ -41,3 +41,35 @@
   display: grid;
   grid-gap: 15px;
 }
+.item-price input {
+    height: 50px;
+    padding: 15px;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 8px 0px 0px 8px;
+}
+.item-price {
+    display: flex;
+}
+.symbol {
+    height: 50px;
+    background: #fff;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: gray;
+    border-radius: 0px 8px 8px 0px;
+    border: 1px solid rgb(200, 200, 200);
+}
+.price {
+    margin-top: 20px;
+    display: grid;
+    grid-gap: 10px;
+}
+.item-area input{
+    height: 50px;
+    padding: 15px;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 8px;
+}
