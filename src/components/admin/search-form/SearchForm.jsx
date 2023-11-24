@@ -1,11 +1,11 @@
 import React from "react";
 import "./search-form.css";
 
-const SearchForm = () => {
+const SearchForm = ({onSearch}) => {
   return (
     <div className="search-form">
       <form>
-        <input placeholder="Որոնել ․․․" />
+        <input placeholder="Որոնել ․․․" onChange={(evn) => onSearch(evn.target.value)}/>
       </form>
     </div>
   );

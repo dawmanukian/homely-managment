@@ -2,7 +2,7 @@ import React from "react";
 import "./worker-card.css";
 import { FiMail, FiPhone } from "react-icons/fi";
 
-const WorkerCard = () => {
+const WorkerCard = ({ name, surname, email, id, phone, type }) => {
   return (
     <div className="worker-card">
       <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
@@ -13,18 +13,20 @@ const WorkerCard = () => {
           className="prf-img"
         />
         <div className="prf-data">
-          <b>Դավիթ Մանուկյան</b>
-          <p>Մենեջեր</p>
+          <b>
+            {name} {surname}
+          </b>
+          <p>{type}</p>
         </div>
       </div>
       <div className="prf-contact">
         <div className="contact-data">
-            <FiPhone className="prf-icon"/>
-            <span>+37494673735</span>
+          <FiPhone className="prf-icon" />
+          <span>{phone}</span>
         </div>
         <div className="contact-data">
-            <FiMail className="prf-icon"/>
-            <span>davit-manukyan@homely.com</span>
+          <FiMail className="prf-icon" />
+          <span>{email}</span>
         </div>
       </div>
       <button className="delete-acc-btn">Փակել հաշիվը</button>
