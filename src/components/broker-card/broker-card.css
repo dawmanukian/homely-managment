@@ -16,10 +16,15 @@
     background: none;
     color: green;
     border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 35px;
     min-width: 100px;
 }
 .selected {
     background: green;
     color: #fff;
+    padding: 5px;
+    gap: 10px;
 }

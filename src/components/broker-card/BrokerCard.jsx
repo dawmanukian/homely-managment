@@ -1,5 +1,6 @@
 import React from "react";
 import "./broker-card.css";
+import { FaCheck } from "react-icons/fa6";
 
 const BrokerCard = ({ name, surname, selected, onSelect, phone }) => {
   return (
@@ -10,20 +11,31 @@ const BrokerCard = ({ name, surname, selected, onSelect, phone }) => {
         width={"70px"}
         className="broker-img"
       />
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        color: 'gray'
-      }}>
-        <span>{name} {surname}</span>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          color: "gray",
+        }}
+      >
+        <span>
+          {name} {surname}
+        </span>
         <span>{phone}</span>
       </div>
       <button
         className={`select-btn ${selected && "selected"}`}
         onClick={() => onSelect()}
       >
-        {selected ? "Ընտրված է" : "Ընտրել"}
+        {!selected ? (
+          "Ընտրել"
+        ) : (
+          <>
+            Ընտրված է
+            <FaCheck />
+          </>
+        )}
       </button>
     </div>
   );
