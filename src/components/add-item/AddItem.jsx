@@ -148,7 +148,8 @@ const AddItem = () => {
                   style={{ objectFit: "cover", borderRadius: "7px" }}
                 />
                 <button
-                  onClick={() => {
+                  onClick={(evn) => {
+                    evn.preventDefault()
                     setAnotherImgs(anotherImgs.filter((el) => el !== image));
                   }}
                 >
