@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./add-item.css";
+import { FaImage } from "react-icons/fa6";
+import { FaTrashCan } from "react-icons/fa6";
 
 const AddItem = () => {
+  const [mainImg, setMainImg] = useState("");
+
   return (
     <div className="add-item">
       <form className="add-item-panel">
@@ -78,6 +82,42 @@ const AddItem = () => {
           <div className="item-area">
             <input placeholder="Գույքի մակերեսը" type="number" />
           </div>
+        </div>
+        {/* <div>
+          <select>
+            <option>Երևան</option>
+            <option>Կոտայք</option>
+
+          </select>
+        </div> */}
+        <input
+          type="file"
+          id="main-image"
+          accept="image/*"
+          multiple
+          onChange={(evn) =>
+            setMainImg(URL.createObjectURL(evn.target.files["0"]))
+          }
+        />
+        <div className="main-img">
+          {mainImg === "" ? (
+            <label htmlFor="main-image" className="main-img-label">
+              Գույքի գլխավոր նկար
+              <FaImage className="img-icon" />
+            </label>
+          ) : (
+            <div className="selected-img">
+              <img
+                src={mainImg}
+                height={"200px"}
+                width={"100%"}
+                style={{objectFit: 'cover', borderRadius: '7px'}}
+              />
+              <button onClick={() => setMainImg("")}>
+                <FaTrashCan />
+              </button>
+            </div>
+          )}
         </div>
       </form>
     </div>
