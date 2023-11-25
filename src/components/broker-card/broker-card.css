@@ -1,0 +1,24 @@
+.broker-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 15px;
+    border-radius: 10px;
+}
+.broker-img {
+    border-radius: 50%;
+}
+.select-btn {
+    border: 1px solid green;
+    background: none;
+    color: green;
+    border-radius: 7px;
+    height: 35px;
+    min-width: 100px;
+}
+.selected {
+    background: green;
+    color: #fff;
+}

@@ -1,0 +1,12 @@
+.adder-data {
+    max-height: 400px;
+    overflow-y: scroll;
+    padding: 35px;
+    background: #fff;
+    border-radius: 8px;
+}
+.all-brokers {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}

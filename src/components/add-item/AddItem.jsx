@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./add-item.css";
 import { FaImage } from "react-icons/fa6";
 import { FaTrashCan } from "react-icons/fa6";
+import { FaClipboardCheck } from "react-icons/fa6";
 import { FcPicture } from "react-icons/fc";
-
+import AdderData from "../adder-data/AdderData";
 
 const AddItem = () => {
   const [mainImg, setMainImg] = useState("");
@@ -132,9 +133,7 @@ const AddItem = () => {
             }}
           />
           <div className="add-image">
-            <label htmlFor="add-image">
-              Ավելացնել նկար +
-            </label>
+            <label htmlFor="add-image">Ավելացնել նկար +</label>
           </div>
           <div className="an-images">
             {anotherImgs.map((image, index) => (
@@ -149,7 +148,7 @@ const AddItem = () => {
                 />
                 <button
                   onClick={(evn) => {
-                    evn.preventDefault()
+                    evn.preventDefault();
                     setAnotherImgs(anotherImgs.filter((el) => el !== image));
                   }}
                 >
@@ -159,7 +158,12 @@ const AddItem = () => {
             ))}
           </div>
         </div>
+        <button className="add-item-btn" type="submit">
+          Ավելացնել գույք
+          <FaClipboardCheck />
+        </button>
       </form>
+      <AdderData />
     </div>
   );
 };

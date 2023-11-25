@@ -15,7 +15,7 @@ const Broker = ({ type }) => {
         </Routes>
       </Router>
     </div>
-  );
+  );  
 };
 
 export default Broker;

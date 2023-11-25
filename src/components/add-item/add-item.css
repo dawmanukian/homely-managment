@@ -2,6 +2,8 @@
   margin-top: 65px;
   min-height: 100vh;
   padding: 35px;
+  display: flex;
+  gap: 30px;
 }
 .item-type {
   height: 45px;
@@ -120,6 +122,7 @@
   display: grid;
   gap: 20px;
   max-height: 600px;
+  max-width: 690px;
   overflow-y: scroll;
   border: 1px solid rgb(200, 200, 200);
   border-radius: 10px;
@@ -147,4 +150,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.add-item-btn {
+  height: 45px;
+  width: 100%;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  background: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 10px;
+  margin-top: 25px;
+}
+@media screen and (max-width: 991px){
+  .add-item {
+    flex-direction: column-reverse;
+  }
 }
