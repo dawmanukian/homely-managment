@@ -1,0 +1,34 @@
+#erkrord{
+    height: 150px;
+    width:150px;
+    background: green;
+    border: 5px solid black;
+}
+#arajin{
+    height: 200px;
+    width: 200px;
+    background:blue;
+    border:5px solid red;
+    border-radius: 50%;
+
+}
+#erord{
+    height: 200px;
+    width: 200px;
+    background:black;
+    border:5px dashed red;
+    border-radius:50%
+}
+#mec{
+    width: 250px;
+    height: 100px;
+    border:5px dashed blue;
+    background: red;
+
+}
+#poqr{height:50px ;
+    width:100px ;
+    border:5px dashed black;
+    background:green;
+
+}

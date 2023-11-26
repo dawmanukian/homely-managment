@@ -1,0 +1,38 @@
+.message-panel {
+    width: 100%;
+    height: 100%;
+    background: hsla(0,0%,100%,.7);
+    position: fixed;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.message {
+    position: absolute;
+    padding: 20px;
+    height: 70vh;
+    width: 500px;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 5;
+    border-radius: 13px;
+    overflow-y: auto;
+    animation: message-open 0.5s;
+}
+@keyframes message-open {
+    from {
+        transform: scale(0.7);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+.message p {
+    color: gray;
+}
+@media screen and (max-width: 520px){
+    .message {
+        width: 100%;
+    }
+}

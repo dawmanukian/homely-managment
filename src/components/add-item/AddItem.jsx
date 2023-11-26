@@ -7,7 +7,7 @@ import { FcPicture } from "react-icons/fc";
 import AdderData from "../adder-data/AdderData";
 import { useForm } from "react-hook-form";
 
-const AddItem = () => {
+const AddItem = ({type}) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -18,9 +18,13 @@ const AddItem = () => {
   const [anotherImgs, setAnotherImgs] = useState([]);
   const [rentOrSell, setRentOrSell] = useState(null);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append('mainImg', data.mainImage);
+    console.log(formData)
+  }
 
-  return (
+  return (  
     <div className="add-item">
       <form className="add-item-panel" onSubmit={handleSubmit(onSubmit)}>
         <div className="select-item-panel">
@@ -94,18 +98,36 @@ const AddItem = () => {
         <hr />
         <div className="item-headers">
           <div className="header-inpts">
-            <input placeholder="Գույքի անվանումը ՝ Հայերեն" />
-            <textarea placeholder="Գույքի նկարագրությունը ՝ Հայերեն"></textarea>
+            <input
+              placeholder="Գույքի անվանումը ՝ Հայերեն"
+              {...register("itemNameArm")}
+            />
+            <textarea
+              placeholder="Գույքի նկարագրությունը ՝ Հայերեն"
+              {...register("itemDesArm")}
+            ></textarea>
           </div>
           <hr />
           <div className="header-inpts">
-            <input placeholder="Գույքի անվանումը ՝ Ռուսերեն" />
-            <textarea placeholder="Գույքի նկարագրությունը ՝ Ռուսերեն"></textarea>
+            <input
+              placeholder="Գույքի անվանումը ՝ Ռուսերեն"
+              {...register("itemNameRu")}
+            />
+            <textarea
+              placeholder="Գույքի նկարագրությունը ՝ Ռուսերեն"
+              {...register("itemDesRu")}
+            ></textarea>
           </div>
           <hr />
           <div className="header-inpts">
-            <input placeholder="Գույքի անվանումը ՝ Անգլերեն" />
-            <textarea placeholder="Գույքի նկարագրությունը ՝ Անգլերեն"></textarea>
+            <input
+              placeholder="Գույքի անվանումը ՝ Անգլերեն"
+              {...register("itemNameEn")}
+            />
+            <textarea
+              placeholder="Գույքի նկարագրությունը ՝ Անգլերեն"
+              {...register("itemDesEn")}
+            ></textarea>
           </div>
         </div>
         {rentOrSell === 1 || rentOrSell === 2 ? (
@@ -194,8 +216,11 @@ const AddItem = () => {
             {...register("itemArea", { required: true })}
           />
         </div>
-        {errors.itemArea && <p className="error-message">Գրեք գույքի մակերեսը</p>}
+        {errors.itemArea && (
+          <p className="error-message">Գրեք գույքի մակերեսը</p>
+        )}
         <input
+          {...register('mainImage')}
           type="file"
           id="main-image"
           accept="image/*"
@@ -227,6 +252,7 @@ const AddItem = () => {
         <h4>Այլ նկարներ</h4>
         <div className="another-images">
           <input
+            {...register('allImages')}
             type="file"
             id="add-image"
             accept="image/*"
@@ -271,7 +297,7 @@ const AddItem = () => {
           <FaClipboardCheck />
         </button>
       </form>
-      <AdderData />
+      {type !== 'Broker' && <AdderData />}
     </div>
   );
 };

@@ -1,0 +1,38 @@
+.request-card {
+    padding: 15px;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+}
+.req-btns {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 7px;
+}
+.req-btns button {
+    border: none;
+    height: 45px;
+    color: #fff;
+    border-radius: 8px;
+}
+.req-btns button:hover {
+    opacity: 70%;
+}
+.user-name {
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user-phone {
+    color: gray;
+}
+.view-btn-item {
+    background: #246BFDFF;
+}
+.view-btn-message {
+    background: rgb(8, 113, 8);
+}
+.del-btn {
+    background: rgb(250, 63, 63);
+}
