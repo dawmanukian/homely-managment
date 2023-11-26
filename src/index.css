@@ -66,6 +66,15 @@
 .search-inpt:focus {
   outline: 1px solid #246bfdff;
 }
+.all-items {
+  margin: 30px 0px 0px 0px;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 0.8fr;
+  grid-gap: 30px;
+  padding: 0px 0px 25px 0px;
+}
 .workers {
   margin: 30px 0px 0px 0px;
   width: 100%;
@@ -97,7 +106,8 @@
   background: #f4f4f4;
 }
 @media screen and (max-width: 1220px) {
-  .workers {
+  .workers,
+  .all-items {
     grid-template-columns: 1fr;
   }
 }

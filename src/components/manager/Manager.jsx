@@ -2,6 +2,8 @@ import React from "react";
 import AccountData from "../account-data/AccountData";
 import ManagerLeftMenu from "./manager-left-menu/ManagerLeftMenu";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AddItem from "../add-item/AddItem";
+import Settings from "../settings/Settings";
 
 const Manager = ({ type }) => {
   return (
@@ -10,7 +12,8 @@ const Manager = ({ type }) => {
         <ManagerLeftMenu type={type} />
         <AccountData type={"Manager"} />
         <Routes>
-          <Route />
+          <Route path="/add" element={<AddItem />}/>
+          <Route path="/settings" element={<Settings />}/>
         </Routes>
       </Router>
     </div>

@@ -7,6 +7,7 @@ import AddUser from "../add-user/AddUser";
 import AllManagers from "./all-managers/AllManagers";
 import AllBrokers from "./all-brokers/AllBrokers";
 import Settings from "../settings/Settings";
+import Announcements from "../announcements/Announcements";
 
 const Admin = ({type}) => {
   return (
@@ -20,6 +21,7 @@ const Admin = ({type}) => {
           <Route path={"/managers"} element={<AllManagers />}/>
           <Route path={"/brokers"} element={<AllBrokers />} />
           <Route path={"/settings"} element={<Settings />} />
+          <Route path={"/all_ads"} element={<Announcements />} />
         </Routes>
       </Router>
     </div>

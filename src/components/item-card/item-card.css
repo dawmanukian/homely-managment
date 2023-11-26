@@ -1,0 +1,43 @@
+.item-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 13px;
+    height: 350px;
+    width: 100%;
+    background: #fff;
+    border-radius: 13px;
+    cursor: pointer;
+    padding: 13px;
+}
+.item-img {
+    object-fit: cover;
+    border-radius: 13px;
+}
+.item-btns {
+    display: grid;
+    grid-template-columns: 150px;
+    gap: 7px;
+}
+.item-btns button {
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+}
+.btn1 {
+    background: orange;
+}
+.btn2 {
+    background: green;
+}
+.btn3 {
+    background: rgb(152, 66, 233);
+}
+.btn4 {
+    background: #246BFDFF;
+}
+.btn5 {
+    background: rgb(87, 139, 244);
+}
+.btn6 {
+    background: rgb(255, 92, 92);
+}

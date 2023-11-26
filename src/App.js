@@ -7,7 +7,7 @@ import Manager from "./components/manager/Manager";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const accType = "broker";
+  const accType = "admin";
 
   const [cookies, setCookie] = useCookies(["token"]);
   const [logined, setLogined] = useState(true);

@@ -17,13 +17,16 @@ const RequestCard = ({ onShowMessage, name, phone }) => {
         <FaPhone /> {phone}
       </p>
       <div className="req-btns">
-        <button className="view-btn-item">
-          <FaRegEye /> Տեսնել հայտարարությունը
-        </button>
-        <button
-          className="view-btn-message"
-          onClick={() => onShowMessage()}
+        <a
+          href={`https://homely-sigma.vercel.app/item/3`}
+          className="view-btn-link"
+          target="_blank"
         >
+          <button className="view-btn-item">
+            <FaRegEye /> Տեսնել հայտարարությունը
+          </button>
+        </a>
+        <button className="view-btn-message" onClick={() => onShowMessage()}>
           <FaMessage /> Տեսնել հաղորդագրությունը
         </button>
         <button className="del-btn">

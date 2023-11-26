@@ -40,7 +40,7 @@ const Requests = () => {
         />
       )}
       <div className="workers-page">
-        <SearchForm />
+        <div style={{ height: "180px", background: "#fff" }}></div>
         <div className="workers">
           {requests.map((el) => {
             return (
@@ -60,9 +60,6 @@ const Requests = () => {
               />
             );
           })}
-          {/* <RequestCard />
-          <RequestCard />
-          <RequestCard /> */}
         </div>
       </div>
     </>
