@@ -165,6 +165,9 @@
   border-radius: 10px;
   margin-top: 25px;
 }
+.error-message {
+  color: rgb(243, 67, 67);
+}
 @media screen and (max-width: 991px){
   .add-item {
     flex-direction: column-reverse;

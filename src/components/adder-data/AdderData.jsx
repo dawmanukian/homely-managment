@@ -51,6 +51,7 @@ const AdderData = () => {
 
   return (
     <div className="adder-data">
+      <b>Ընտրել գործակալ ցանկից</b>
       <div className="all-brokers">
         {allWorkers.map((el) => {
           return (
