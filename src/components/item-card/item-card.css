@@ -1,13 +1,15 @@
 .item-card {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 13px;
-    height: 350px;
+    min-height: 350px;
     width: 100%;
     background: #fff;
     border-radius: 13px;
     cursor: pointer;
     padding: 13px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .item-img {
     object-fit: cover;
@@ -15,13 +17,41 @@
 }
 .item-btns {
     display: grid;
-    grid-template-columns: 150px;
-    gap: 7px;
+    grid-template-columns: repeat(auto-fill, 150px);
+    gap: 12px;
 }
 .item-btns button {
+    min-height: 50px;
     border: none;
     border-radius: 10px;
     color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.brokers-all-data {
+    display: grid;
+}
+.item-btns button:hover {
+    opacity: 70%;
+}
+.item-location {
+    color: gray;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.broker-info {
+    min-width: 320px;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 12px;
+    padding: 13px;
+}
+.broker-profile-img {
+    object-fit: cover;
+    border-radius: 13px;
 }
 .btn1 {
     background: orange;
@@ -40,4 +70,10 @@
 }
 .btn6 {
     background: rgb(255, 92, 92);
+}
+@media screen and (max-width: 600px){
+    .item-btns {
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
 }
