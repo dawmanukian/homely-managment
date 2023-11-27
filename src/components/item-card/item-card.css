@@ -14,6 +14,7 @@
 .item-img {
     object-fit: cover;
     border-radius: 13px;
+    margin-bottom: 13px;
 }
 .item-btns {
     display: grid;
@@ -32,20 +33,40 @@
 }
 .brokers-all-data {
     display: grid;
+    gap: 10px;
+}
+.brokers-all-data b {
+    font-size: 18px;
+    margin: 10px 0px 0px 0px;
 }
 .item-btns button:hover {
     opacity: 70%;
+}
+.item-prices {
+    display: flex;
+    gap: 20px;
+    font-size: 18px;
+    color: gray
+}
+.item-data-panel {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 13px;
+    border-radius: 13px;
+}
+.item-header {
+    font-size: 20px;
 }
 .item-location {
     color: gray;
     display: flex;
     align-items: center;
     gap: 5px;
+    margin: 12px 0px 12px 0px;
 }
 .broker-info {
     min-width: 320px;
     background: #fff;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 12px;
     padding: 13px;
 }
@@ -70,6 +91,13 @@
 }
 .btn6 {
     background: rgb(255, 92, 92);
+}
+.brokers-all-data span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 17px;
+    color: gray;
 }
 @media screen and (max-width: 600px){
     .item-btns {
