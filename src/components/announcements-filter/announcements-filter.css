@@ -1,0 +1,30 @@
+.announcements-filter {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 25px;
+}
+.filter-search-inpt {
+  height: 55px;
+  border: none;
+  background: #f0f2f5ff;
+  padding: 15px;
+  border-radius: 12px;
+}
+.filters {
+  padding: 20px;
+  background: #fff;
+  gap: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 13px;
+}
+.filter-inputs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.inpts-panel {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
