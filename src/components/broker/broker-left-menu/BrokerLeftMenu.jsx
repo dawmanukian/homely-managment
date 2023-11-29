@@ -38,7 +38,7 @@ const BrokerLeftMenu = () => {
               </b>
             </div>
           </Link>
-          <Link to={"/my_ads"}>
+          <Link to={"/all_ads"}>
             <div className="menu-item">
               <b>
                 Հայտարարություններ <FiDatabase className="menu-icon" />
