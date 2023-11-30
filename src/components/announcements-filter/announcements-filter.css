@@ -28,3 +28,38 @@
   gap: 10px;
   flex-wrap: wrap;
 }
+.item-type-label {
+  height: 45px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.select-region select {
+  height: 45px;
+  border: none;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.item-type-panel {
+  margin-bottom: 15px;
+}
+.announcement-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.announcement-filters label {
+  height: 45px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
