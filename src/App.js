@@ -14,7 +14,7 @@ function App() {
   const [logined, setLogined] = useState(true);
   const [loading, setLoading] = useState(true)
 
-  setTimeout(() => {setLoading(false)}, '3200')
+  setTimeout(() => {setLoading(false)}, '4000')
 
   console.log(cookies);
 

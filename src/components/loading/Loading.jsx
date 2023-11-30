@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <div className="loading-page">
       <div class="ring">
-        HOMELY
+        <p>HOMELY Team</p>
         <span></span>
       </div>
     </div>
