@@ -3,11 +3,11 @@ import "./loading.css";
 
 const Loading = () => {
   return (
-    <div class="lds-ellipsis">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <div className="loading-page">
+      <div class="ring">
+        HOMELY
+        <span></span>
+      </div>
     </div>
   );
 };

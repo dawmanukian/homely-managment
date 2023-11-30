@@ -5,12 +5,17 @@ import { useCookies } from "react-cookie";
 import Broker from "./components/broker/Broker";
 import Manager from "./components/manager/Manager";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Loading from "./components/loading/Loading";
 
 function App() {
   const accType = "broker";
 
   const [cookies, setCookie] = useCookies(["token"]);
   const [logined, setLogined] = useState(true);
+  const [loading, setLoading] = useState(true)
+
+  setTimeout(() => {setLoading(false)}, '3200')
+
   console.log(cookies);
 
   // useEffect(() => {
@@ -32,7 +37,11 @@ function App() {
     }
   }
 
-  return <>{logined && selectAcc()}</>;
+  return (
+    <>
+      {logined && (loading ? <Loading /> : selectAcc())}
+    </>
+  )
 }
 
 export default App;
