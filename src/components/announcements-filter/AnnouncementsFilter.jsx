@@ -1,6 +1,7 @@
 import React from "react";
 import "./announcements-filter.css";
 import { useForm } from "react-hook-form";
+import { FaRocket } from "react-icons/fa6";
 
 const AnnouncementsFilter = () => {
   const {
@@ -9,7 +10,9 @@ const AnnouncementsFilter = () => {
     register,
   } = useForm();
 
-  const onSubmit = (data) => {};
+  const onSubmit = (data) => {
+    alert(JSON.stringify(data));
+  };
 
   return (
     <div className="announcements-filter">
@@ -17,9 +20,21 @@ const AnnouncementsFilter = () => {
         <div className="filter-inputs">
           <input placeholder="Որոնել..." className="filter-search-inpt" />
           <div className="inpts-panel">
-            <input placeholder="Գին սկսած" className="filter-search-inpt" />
-            <input placeholder="Գին մինչև" className="filter-search-inpt" />
-            <input placeholder="Մակերես" className="filter-search-inpt" />
+            <input
+              placeholder="Գին սկսած"
+              className="filter-search-inpt"
+              type="number"
+            />
+            <input
+              placeholder="Գին մինչև"
+              className="filter-search-inpt"
+              type="number"
+            />
+            <input
+              placeholder="Մակերես"
+              className="filter-search-inpt"
+              type="number"
+            />
           </div>
         </div>
         <hr />
@@ -48,6 +63,7 @@ const AnnouncementsFilter = () => {
             </select>
           </div>
         </div>
+        <b>Գույքի տիպը</b>
         <div className="announcement-filters">
           <label htmlFor="announcement-type-flat">
             Բնակարան
@@ -67,6 +83,7 @@ const AnnouncementsFilter = () => {
           </label>
         </div>
         <hr />
+        <b>Շենքի տիպ</b>
         <div className="announcement-filters">
           <label htmlFor="announcement-type-panel">
             Պանելային
@@ -82,6 +99,7 @@ const AnnouncementsFilter = () => {
           </label>
         </div>
         <hr />
+        <b>Կարգավիճակ</b>
         <div className="announcement-filters">
           <label htmlFor="announcement-status-panel">
             Զրոյական
@@ -96,6 +114,30 @@ const AnnouncementsFilter = () => {
             <input type="checkbox" id="announcement-status-other" />
           </label>
         </div>
+        <hr />
+        <b>Սենյակների քանակ</b>
+        <div className="announcement-filters">
+          <label htmlFor="announcement-rooms-1">
+            1
+            <input type="checkbox" id="announcement-rooms-1" />
+          </label>
+          <label htmlFor="announcement-rooms-2">
+            2
+            <input type="checkbox" id="announcement-rooms-2" />
+          </label>
+          <label htmlFor="announcement-rooms-3">
+            3
+            <input type="checkbox" id="announcement-rooms-3" />
+          </label>
+          <label htmlFor="announcement-rooms-4">
+            4+
+            <input type="checkbox" id="announcement-rooms-4" />
+          </label>
+        </div>
+        <button className="send-message-btn">
+          Որոնել
+          <FaRocket />
+        </button>
       </form>
     </div>
   );

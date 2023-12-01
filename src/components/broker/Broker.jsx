@@ -7,6 +7,7 @@ import AddItem from "../add-item/AddItem";
 import Settings from "../settings/Settings";
 import Requests from "./requests/Requests";
 import Announcements from "../announcements/Announcements";
+import MyAnnouncements from "./my-announcements/MyAnnouncements";
 
 const Broker = ({ type }) => {
   return (
@@ -19,6 +20,7 @@ const Broker = ({ type }) => {
           <Route path="/settings" element={<Settings />}/>
           <Route path="/requests" element={<Requests />}/>
           <Route path="/all_ads" element={<Announcements />} />
+          <Route path="/my_ads" element={<MyAnnouncements />} />
         </Routes>
       </Router>
     </div>

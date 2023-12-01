@@ -49,6 +49,7 @@
   margin-bottom: 15px;
 }
 .announcement-filters {
+  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
@@ -62,4 +63,20 @@
   gap: 10px;
   border-radius: 10px;
   cursor: pointer;
+}
+.send-message-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 250px;
+  border: none;
+  border-radius: 10px;
+  background: green;
+  color: #fff;
+  margin-top: 15px;
+  gap: 5px;
+}
+.filters b {
+  color: gray;
 }
