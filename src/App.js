@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Loading from "./components/loading/Loading";
 
 function App() {
-  const accType = "broker";
+  const accType = "admin";
 
   const [cookies, setCookie] = useCookies(["token"]);
   const [logined, setLogined] = useState(true);

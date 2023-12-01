@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./announcements-filter.css";
 import { useForm } from "react-hook-form";
 import { FaRocket } from "react-icons/fa6";
@@ -13,6 +13,8 @@ const AnnouncementsFilter = () => {
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
   };
+
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <div className="announcements-filter">
@@ -63,81 +65,96 @@ const AnnouncementsFilter = () => {
             </select>
           </div>
         </div>
-        <b>Գույքի տիպը</b>
-        <div className="announcement-filters">
-          <label htmlFor="announcement-type-flat">
-            Բնակարան
-            <input type="checkbox" id="announcement-type-flat" />
-          </label>
-          <label htmlFor="announcement-type-earth">
-            Հողատարածք
-            <input type="checkbox" id="announcement-type-earth" />
-          </label>
-          <label htmlFor="announcement-type-commercial">
-            Կոմերցիոն
-            <input type="checkbox" id="announcement-type-commercial" />
-          </label>
-          <label htmlFor="announcement-type-mansion">
-            Առանձնատուն
-            <input type="checkbox" id="announcement-type-mansion" />
-          </label>
+        {showMore && (
+          <>
+            <b>Գույքի տիպը</b>
+            <div className="announcement-filters">
+              <label htmlFor="announcement-type-flat">
+                Բնակարան
+                <input type="checkbox" id="announcement-type-flat" />
+              </label>
+              <label htmlFor="announcement-type-earth">
+                Հողատարածք
+                <input type="checkbox" id="announcement-type-earth" />
+              </label>
+              <label htmlFor="announcement-type-commercial">
+                Կոմերցիոն
+                <input type="checkbox" id="announcement-type-commercial" />
+              </label>
+              <label htmlFor="announcement-type-mansion">
+                Առանձնատուն
+                <input type="checkbox" id="announcement-type-mansion" />
+              </label>
+            </div>
+            <hr />
+            <b>Շենքի տիպ</b>
+            <div className="announcement-filters">
+              <label htmlFor="announcement-type-panel">
+                Պանելային
+                <input type="checkbox" id="announcement-type-panel" />
+              </label>
+              <label htmlFor="announcement-type-stone">
+                Քարե
+                <input type="checkbox" id="announcement-type-stone" />
+              </label>
+              <label htmlFor="announcement-type-other">
+                Այլ
+                <input type="checkbox" id="announcement-type-other" />
+              </label>
+            </div>
+            <hr />
+            <b>Կարգավիճակ</b>
+            <div className="announcement-filters">
+              <label htmlFor="announcement-status-panel">
+                Զրոյական
+                <input type="checkbox" id="announcement-status-panel" />
+              </label>
+              <label htmlFor="announcement-status-stone">
+                Լավ
+                <input type="checkbox" id="announcement-status-stone" />
+              </label>
+              <label htmlFor="announcement-status-other">
+                Վերանորոգված
+                <input type="checkbox" id="announcement-status-other" />
+              </label>
+            </div>
+            <hr />
+            <b>Սենյակների քանակ</b>
+            <div className="announcement-filters">
+              <label htmlFor="announcement-rooms-1">
+                1
+                <input type="checkbox" id="announcement-rooms-1" />
+              </label>
+              <label htmlFor="announcement-rooms-2">
+                2
+                <input type="checkbox" id="announcement-rooms-2" />
+              </label>
+              <label htmlFor="announcement-rooms-3">
+                3
+                <input type="checkbox" id="announcement-rooms-3" />
+              </label>
+              <label htmlFor="announcement-rooms-4">
+                4+
+                <input type="checkbox" id="announcement-rooms-4" />
+              </label>
+            </div>
+          </>
+        )}
+        <div className="filter-btns">
+          <button className="send-message-btn">
+            Որոնել
+            <FaRocket />
+          </button>
+          <button
+            className="more-btn"
+            onClick={(evn) => {
+              evn.preventDefault();
+              setShowMore(!showMore);
+            }}
+          >
+            Ավելին
+          </button>
         </div>
-        <hr />
-        <b>Շենքի տիպ</b>
-        <div className="announcement-filters">
-          <label htmlFor="announcement-type-panel">
-            Պանելային
-            <input type="checkbox" id="announcement-type-panel" />
-          </label>
-          <label htmlFor="announcement-type-stone">
-            Քարե
-            <input type="checkbox" id="announcement-type-stone" />
-          </label>
-          <label htmlFor="announcement-type-other">
-            Այլ
-            <input type="checkbox" id="announcement-type-other" />
-          </label>
-        </div>
-        <hr />
-        <b>Կարգավիճակ</b>
-        <div className="announcement-filters">
-          <label htmlFor="announcement-status-panel">
-            Զրոյական
-            <input type="checkbox" id="announcement-status-panel" />
-          </label>
-          <label htmlFor="announcement-status-stone">
-            Լավ
-            <input type="checkbox" id="announcement-status-stone" />
-          </label>
-          <label htmlFor="announcement-status-other">
-            Վերանորոգված
-            <input type="checkbox" id="announcement-status-other" />
-          </label>
-        </div>
-        <hr />
-        <b>Սենյակների քանակ</b>
-        <div className="announcement-filters">
-          <label htmlFor="announcement-rooms-1">
-            1
-            <input type="checkbox" id="announcement-rooms-1" />
-          </label>
-          <label htmlFor="announcement-rooms-2">
-            2
-            <input type="checkbox" id="announcement-rooms-2" />
-          </label>
-          <label htmlFor="announcement-rooms-3">
-            3
-            <input type="checkbox" id="announcement-rooms-3" />
-          </label>
-          <label htmlFor="announcement-rooms-4">
-            4+
-            <input type="checkbox" id="announcement-rooms-4" />
-          </label>
-        </div>
-        <button className="send-message-btn">
-          Որոնել
-          <FaRocket />
-        </button>
       </form>
     </div>
   );

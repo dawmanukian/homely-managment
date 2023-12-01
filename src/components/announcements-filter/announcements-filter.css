@@ -80,3 +80,17 @@
 .filters b {
   color: gray;
 }
+.filter-btns {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.more-btn {
+  height: 45px;
+  min-width: 250px;
+  border: none;
+  border-radius: 10px;
+  background: #FFA500FF;
+  color: #fff;
+  margin-top: 15px;
+}

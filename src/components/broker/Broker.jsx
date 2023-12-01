@@ -16,7 +16,7 @@ const Broker = ({ type }) => {
         <BrokerLeftMenu type={type} />
         <AccountData type={"Broker"} />
         <Routes>
-          <Route path="/add" element={<AddItem type={'Broker'}/>}/>
+          <Route path="/*" element={<AddItem type={'Broker'}/>} />
           <Route path="/settings" element={<Settings />}/>
           <Route path="/requests" element={<Requests />}/>
           <Route path="/all_ads" element={<Announcements />} />
