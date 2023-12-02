@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./announcements-filter.css";
 import { useForm } from "react-hook-form";
 import { FaRocket } from "react-icons/fa6";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 
 const AnnouncementsFilter = () => {
   const {
@@ -152,7 +153,7 @@ const AnnouncementsFilter = () => {
               setShowMore(!showMore);
             }}
           >
-            Ավելին
+            Ավելին {showMore ? <FaChevronUp /> : <FaChevronDown />}
           </button>
         </div>
       </form>

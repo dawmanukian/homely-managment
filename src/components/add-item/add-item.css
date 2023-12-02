@@ -168,6 +168,36 @@
 .error-message {
   color: rgb(243, 67, 67);
 }
+.owner-data {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+input[type="file"] {
+  display: none;
+}
+.add-owner-img {
+  height: 175px;
+  width: 175px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all ease .4s;
+}
+.add-owner-img:hover {
+  opacity: 50%;
+}
+.add-owner-img img {
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 4px solid #0165CFFF;
+}
+.owner-inpt {
+  height: 50px;
+  padding: 15px;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 8px;
+}
 @media screen and (max-width: 991px){
   .add-item {
     flex-direction: column-reverse;

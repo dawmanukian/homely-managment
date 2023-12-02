@@ -6,28 +6,63 @@ import { FaClipboardCheck } from "react-icons/fa6";
 import { FcPicture } from "react-icons/fc";
 import AdderData from "../adder-data/AdderData";
 import { useForm } from "react-hook-form";
+import add_img from "../../img/istockphoto-982412666-612x612.jpg";
 
-const AddItem = ({type}) => {
+const AddItem = ({ type }) => {
   const {
     handleSubmit,
     formState: { errors },
     register,
   } = useForm();
 
+  const [ownerImg, setOwnerImg] = useState(add_img);
   const [mainImg, setMainImg] = useState("");
   const [anotherImgs, setAnotherImgs] = useState([]);
   const [rentOrSell, setRentOrSell] = useState(null);
 
   const onSubmit = (data) => {
     const formData = new FormData();
-    formData.append('mainImg', data.mainImage);
-    console.log(formData)
-  }
+    formData.append("mainImg", data.mainImage);
+    console.log(formData);
+  };
 
-  return (  
+  return (
     <div className="add-item">
       <form className="add-item-panel" onSubmit={handleSubmit(onSubmit)}>
         <div className="select-item-panel">
+          <div className="owner-data">
+            <input
+              type="file"
+              id="owner-img"
+              accept="image/*"
+              multiple
+              onChange={(evn) =>
+                setOwnerImg(URL.createObjectURL(evn.target.files["0"]))
+              }
+            />
+            <label htmlFor="owner-img" className="add-owner-img">
+              <img src={ownerImg} height={"100%"} width={"100%"} />
+            </label>
+            <input
+              placeholder="Անուն Ազգանուն"
+              className="owner-inpt"
+              {...register("ownerName", { required: true })}
+            />
+            <input
+              placeholder="Հեռ․ համար"
+              className="owner-inpt"
+              {...register("ownerPhone", { required: true })}
+            />
+            <input
+              placeholder="Էլ․ հասցե"
+              className="owner-inpt"
+              {...register("ownerEmail")}
+            />
+            {(errors.ownerName || errors.ownerPhone) && (
+              <p className="error-message">Լրացրեք բոլոր դաշտերը</p>
+            )}
+          </div>
+          <hr />
           <h4>Հայտարարության տեսակ</h4>
           <div className="item-type-panel">
             <label className="item-type" onClick={() => setRentOrSell(0)}>
@@ -220,7 +255,7 @@ const AddItem = ({type}) => {
           <p className="error-message">Գրեք գույքի մակերեսը</p>
         )}
         <input
-          {...register('mainImage')}
+          {...register("mainImage")}
           type="file"
           id="main-image"
           accept="image/*"
@@ -252,7 +287,7 @@ const AddItem = ({type}) => {
         <h4>Այլ նկարներ</h4>
         <div className="another-images">
           <input
-            {...register('allImages')}
+            {...register("allImages")}
             type="file"
             id="add-image"
             accept="image/*"
@@ -297,7 +332,7 @@ const AddItem = ({type}) => {
           <FaClipboardCheck />
         </button>
       </form>
-      {type !== 'Broker' && <AdderData />}
+      {type !== "Broker" && <AdderData />}
     </div>
   );
 };
