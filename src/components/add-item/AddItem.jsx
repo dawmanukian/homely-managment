@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import "./add-item.css";
-import { FaImage } from "react-icons/fa6";
-import { FaTrashCan } from "react-icons/fa6";
-import { FaClipboardCheck } from "react-icons/fa6";
-import { FcPicture } from "react-icons/fc";
-import AdderData from "../adder-data/AdderData";
 import { useForm } from "react-hook-form";
-import add_img from "../../img/istockphoto-982412666-612x612.jpg";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
 const AddItem = ({ type }) => {
   const {
@@ -15,324 +11,254 @@ const AddItem = ({ type }) => {
     register,
   } = useForm();
 
-  const [ownerImg, setOwnerImg] = useState(add_img);
-  const [mainImg, setMainImg] = useState("");
-  const [anotherImgs, setAnotherImgs] = useState([]);
-  const [rentOrSell, setRentOrSell] = useState(null);
+  const add_floor = () => {
+    let x = new Array();
+    for (let index = 1; index <= 32; index++) {
+      x.push(<option value={index}>{index}</option>);
+    }
+    return x;
+  };
 
   const onSubmit = (data) => {
-    const formData = new FormData();
-    formData.append("mainImg", data.mainImage);
-    console.log(formData);
+    console.log(data);
   };
 
   return (
-    <div className="add-item">
-      <form className="add-item-panel" onSubmit={handleSubmit(onSubmit)}>
-        <div className="select-item-panel">
-          <div className="owner-data">
-            <input
-              type="file"
-              id="owner-img"
-              accept="image/*"
-              multiple
-              onChange={(evn) =>
-                setOwnerImg(URL.createObjectURL(evn.target.files["0"]))
-              }
-            />
-            <label htmlFor="owner-img" className="add-owner-img">
-              <img src={ownerImg} height={"100%"} width={"100%"} />
-            </label>
-            <input
-              placeholder="Անուն Ազգանուն"
-              className="owner-inpt"
-              {...register("ownerName", { required: true })}
-            />
-            <input
-              placeholder="Հեռ․ համար"
-              className="owner-inpt"
-              {...register("ownerPhone", { required: true })}
-            />
-            <input
-              placeholder="Էլ․ հասցե"
-              className="owner-inpt"
-              {...register("ownerEmail")}
-            />
-            {(errors.ownerName || errors.ownerPhone) && (
-              <p className="error-message">Լրացրեք բոլոր դաշտերը</p>
-            )}
-          </div>
-          <hr />
-          <h4>Հայտարարության տեսակ</h4>
-          <div className="item-type-panel">
-            <label className="item-type" onClick={() => setRentOrSell(0)}>
-              <span>Վաճառք</span>
+    <div className="add_item_page">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-panel">
+          <InputGroup className="mb-3" >
+            <Form.Control aria-describedby="basic-addon1" placeholder="Անուն Ազգանուն"/>
+          </InputGroup>
+          <InputGroup className="mb-3">
+            <Form.Control aria-describedby="basic-addon1" placeholder="Հեռ․ համար"/>
+          </InputGroup>
+        </div>
+        <div className="ann_type_panel">
+          <h5 className="h_header">Հայտարարության տեսակը</h5>
+          <div className="checks">
+            <div>
+              <label htmlFor="type_1">Վաճառք</label>
               <input
-                type="radio"
-                value={0}
-                {...register("type", { required: true })}
-              />
-            </label>
-            <label className="item-type" onClick={() => setRentOrSell(1)}>
-              <span>Վարձակալություն</span>
-              <input
+                id="type_1"
                 type="radio"
                 value={1}
-                {...register("type", { required: true })}
+                {...register("ann_type", { required: true })}
               />
-            </label>
-            <label className="item-type" onClick={() => setRentOrSell(2)}>
-              <span>Վարձակալություն և վաճառք</span>
+            </div>
+            <div>
+              <label htmlFor="type_2">Վարձակալություն</label>
               <input
+                id="type_2"
                 type="radio"
                 value={2}
-                {...register("type", { required: true })}
+                {...register("ann_type", { required: true })}
               />
-            </label>
-          </div>
-          {errors.type && (
-            <p className="error-message">Ընտրեք հայտարարության տեսակը</p>
-          )}
-        </div>
-        <div className="select-item-panel">
-          <h4>Գույքի տեսակ</h4>
-          <div className="item-type-panel">
-            <label className="item-type">
-              <span>Բնակարան</span>
+            </div>
+            <div>
+              <label htmlFor="type_3">Վաճառք և Վարձակալություն</label>
               <input
+                id="type_3"
                 type="radio"
-                {...register("itemType", { required: true })}
+                value={3}
+                {...register("ann_type", { required: true })}
               />
-            </label>
-            <label className="item-type">
-              <span>Առանձնատուն</span>
-              <input
-                type="radio"
-                {...register("itemType", { required: true })}
-              />
-            </label>
-            <label className="item-type">
-              <span>Կոմերցիոն</span>
-              <input
-                type="radio"
-                {...register("itemType", { required: true })}
-              />
-            </label>
-            <label className="item-type">
-              <span>Հողատարածք</span>
-              <input
-                type="radio"
-                {...register("itemType", { required: true })}
-              />
-            </label>
+            </div>
           </div>
         </div>
-        {errors.itemType && (
-          <p className="error-message">Ընտրեք գույքի տեսակը</p>
-        )}
+        <div className="form-panel">
+          <h5 className="h_header">Գտնվելու վայրը</h5>
+          <div>
+            <span>Մարզ</span>
+            <Form.Select aria-label="Default select example">
+              <option>Երևան</option>
+              <option>Կոտայք</option>
+            </Form.Select>
+          </div>
+          <div>
+            <span>Շրջան</span>
+            <Form.Select aria-label="Default select example">
+              <option>Երևան</option>
+              <option>Կոտայք</option>
+            </Form.Select>
+          </div>
+          <div>
+            <span>Փողոց</span>
+            <InputGroup className="mb-3">
+              <Form.Control aria-describedby="basic-addon1" />
+            </InputGroup>
+          </div>
+        </div>
         <hr />
-        <div className="item-headers">
-          <div className="header-inpts">
-            <input
-              placeholder="Գույքի անվանումը ՝ Հայերեն"
-              {...register("itemNameArm")}
-            />
-            <textarea
-              placeholder="Գույքի նկարագրությունը ՝ Հայերեն"
-              {...register("itemDesArm")}
-            ></textarea>
+        <div className="form-panel">
+          <h5 className="h_header">Շենքի մասին</h5>
+          <div>
+            <span>Շենքի տիպ</span>
+            <Form.Select aria-label="Default select example">
+              <option>Պանելային</option>
+              <option>Քարե</option>
+              <option>Մոնոլիտ</option>
+              <option>Այլ</option>
+            </Form.Select>
           </div>
-          <hr />
-          <div className="header-inpts">
-            <input
-              placeholder="Գույքի անվանումը ՝ Ռուսերեն"
-              {...register("itemNameRu")}
-            />
-            <textarea
-              placeholder="Գույքի նկարագրությունը ՝ Ռուսերեն"
-              {...register("itemDesRu")}
-            ></textarea>
+          <div>
+            <Form.Check type="switch" id="custom-switch" label="Նորակառույց" />
+            <Form.Check type="switch" id="custom-switch" label="Ունի վերելակ" />
           </div>
-          <hr />
-          <div className="header-inpts">
-            <input
-              placeholder="Գույքի անվանումը ՝ Անգլերեն"
-              {...register("itemNameEn")}
+          <div>
+            <span>Հարկայնություն</span>
+            <InputGroup className="mb-3">
+              <Form.Control aria-describedby="basic-addon1" />
+            </InputGroup>
+          </div>
+          <div>
+            <Form.Check type={"checkbox"} id={`default`} label={`Դոմոֆոն`} />
+            <Form.Check type={"checkbox"} id={`default`} label={`Դռնապահ`} />
+            <Form.Check
+              type={"checkbox"}
+              id={`default`}
+              label={`Խաղահրապարակ`}
             />
-            <textarea
-              placeholder="Գույքի նկարագրությունը ՝ Անգլերեն"
-              {...register("itemDesEn")}
-            ></textarea>
+            <Form.Check
+              type={"checkbox"}
+              id={`default`}
+              label={`Բացօթյա կայանատեղի`}
+            />
+            <Form.Check
+              type={"checkbox"}
+              id={`default`}
+              label={`Ծածկապատ կայանատեղի`}
+            />
+            <Form.Check type={"checkbox"} id={`default`} label={`Ավտոտնակ`} />
           </div>
         </div>
-        {rentOrSell === 1 || rentOrSell === 2 ? (
-          <div className="price">
-            <div className="item-price">
-              <input
-                placeholder="Վարձի արժեքը ՝ Դրամով"
-                type="number"
-                {...register("itemRentPriceDram", { required: true })}
-              />
-              <div className="symbol">
-                <b>֏</b>
-              </div>
-            </div>
-            <div className="item-price">
-              <input
-                placeholder="Վարձի արժեքը ՝ Ռուբլով"
-                type="number"
-                {...register("itemRentPriceRub", { required: true })}
-              />
-              <div className="symbol">
-                <b>₽</b>
-              </div>
-            </div>
-            <div className="item-price">
-              <input
-                placeholder="Վարձի արժեքը ՝ Դոլլարով"
-                type="number"
-                {...register("itemRentPriceUsd", { required: true })}
-              />
-              <div className="symbol">
-                <b>$</b>
-              </div>
-            </div>
-          </div>
-        ) : null}
-        {(errors.itemRentPriceDram ||
-          errors.itemRentPriceRub ||
-          errors.itemRentPriceUsd) && (
-          <p className="error-message">Լրացրեք բոլոր դաշտերը</p>
-        )}
-        {rentOrSell === 0 || rentOrSell === 2 ? (
-          <div className="price">
-            <div className="item-price">
-              <input
-                placeholder="Գույքի արժեքը ՝ Դրամով"
-                type="number"
-                {...register("itemSellPriceUsd", { required: true })}
-              />
-              <div className="symbol">
-                <b>֏</b>
-              </div>
-            </div>
-            <div className="item-price">
-              <input
-                placeholder="Գույքի արժեքը ՝ Ռուբլով"
-                type="number"
-                {...register("itemSellPriceUsd", { required: true })}
-              />
-              <div className="symbol">
-                <b>₽</b>
-              </div>
-            </div>
-            <div className="item-price">
-              <input
-                placeholder="Գույքի արժեքը ՝ Դոլլարով"
-                type="number"
-                {...register("itemSellPriceUsd", { required: true })}
-              />
-              <div className="symbol">
-                <b>$</b>
-              </div>
-            </div>
-          </div>
-        ) : null}
-        {(errors.itemSellPriceDram ||
-          errors.itemSellPriceRub ||
-          errors.itemSellPriceUsd) && (
-          <p className="error-message">Լրացրեք բոլոր դաշտերը</p>
-        )}
         <hr />
-        <div className="item-area">
-          <input
-            placeholder="Գույքի մակերեսը"
-            type="number"
-            {...register("itemArea", { required: true })}
-          />
-        </div>
-        {errors.itemArea && (
-          <p className="error-message">Գրեք գույքի մակերեսը</p>
-        )}
-        <input
-          {...register("mainImage")}
-          type="file"
-          id="main-image"
-          accept="image/*"
-          multiple
-          onChange={(evn) =>
-            setMainImg(URL.createObjectURL(evn.target.files["0"]))
-          }
-        />
-        <div className="main-img">
-          {mainImg === "" ? (
-            <label htmlFor="main-image" className="main-img-label">
-              Գույքի գլխավոր նկար
-              <FaImage className="img-icon" />
-            </label>
-          ) : (
-            <div className="selected-img">
-              <img
-                src={mainImg}
-                height={"200px"}
-                width={"100%"}
-                style={{ objectFit: "cover", borderRadius: "7px" }}
-              />
-              <button onClick={() => setMainImg("")}>
-                <FaTrashCan />
-              </button>
-            </div>
-          )}
-        </div>
-        <h4>Այլ նկարներ</h4>
-        <div className="another-images">
-          <input
-            {...register("allImages")}
-            type="file"
-            id="add-image"
-            accept="image/*"
-            multiple
-            onChange={(evn) => {
-              const fileList = evn.target.files;
-              const newImages = Array.from(fileList).map((file) =>
-                URL.createObjectURL(file)
-              );
-              setAnotherImgs((prevImages) => [...prevImages, ...newImages]);
-              console.log(anotherImgs);
-            }}
-          />
-          <div className="add-image">
-            <label htmlFor="add-image">Ավելացնել նկար +</label>
+        <div className="form-panel">
+          <h5 className="h_header">Գույքի մասին</h5>
+          <div>
+            <span>Մակերես</span>
+            <InputGroup className="mb-3">
+              <Form.Control aria-describedby="basic-addon2" />
+              <InputGroup.Text id="basic-addon2">ք․ մ․</InputGroup.Text>
+            </InputGroup>
           </div>
-          <div className="an-images">
-            {anotherImgs.map((image, index) => (
-              <div className="item-image">
-                <img
-                  key={index}
-                  src={image}
-                  alt={`Uploaded ${index + 1}`}
-                  width={"100%"}
-                  height={"250px"}
-                  style={{ objectFit: "cover", borderRadius: "7px" }}
-                />
-                <button
-                  onClick={(evn) => {
-                    evn.preventDefault();
-                    setAnotherImgs(anotherImgs.filter((el) => el !== image));
-                  }}
-                >
-                  <FaTrashCan />
-                </button>
-              </div>
-            ))}
+          <div>
+            <span>Սենյակների քանակ</span>
+            <Form.Select aria-label="Default select example">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12+</option>
+            </Form.Select>
+          </div>
+          <div>
+            <span>Առաստաղի բարձրություն</span>
+            <Form.Select aria-label="Default select example">
+              <option>2,5 մ</option>
+              <option>2,6 մ</option>
+              <option>2,7 մ</option>
+              <option>2,75 մ</option>
+              <option>2,8 մ</option>
+              <option>3 մ</option>
+              <option>3,2 մ</option>
+              <option>3,5 մ</option>
+            </Form.Select>
+          </div>
+          <div>
+            <span>Հարկ</span>
+            <Form.Select>{add_floor()}</Form.Select>
+          </div>
+          <div>
+            <span>Պատշգամբ</span>
+            <Form.Select>
+              <option>Առկա չէ</option>
+              <option>Բաց պատշգամբ</option>
+              <option>Փակ պատշգամբ</option>
+              <option>Մի քանի պատշգամբ</option>
+            </Form.Select>
+          </div>
+          <div>
+            <span>Կահույք</span>
+            <Form.Select>
+              <option>Առկա չէ</option>
+              <option>Առկա է</option>
+              <option>Մասնակի կահույք</option>
+              <option>Համաձայնությամբ</option>
+            </Form.Select>
+          </div>
+          <div>
+            <Form.Check type={"checkbox"} id={`default`} label={`Օդորակիչ`} />
+            <Form.Check type={"checkbox"} id={`default`} label={`Սառնարան`} />
+            <Form.Check type={"checkbox"} id={`default`} label={`Սալօջախ`} />
+            <Form.Check
+              type={"checkbox"}
+              id={`default`}
+              label={`Աման լվացող մեքենա`}
+            />
+            <Form.Check
+              type={"checkbox"}
+              id={`default`}
+              label={`Լվացքի մեքենա`}
+            />
+            <Form.Check
+              type={"checkbox"}
+              id={`default`}
+              label={`Չորացնող մեքենա`}
+            />
+            <Form.Check
+              type={"checkbox"}
+              id={`default`}
+              label={`Տեսարան դեպի բակ`}
+            />
+            <Form.Check
+              type={"checkbox"}
+              id={`default`}
+              label={`Տեսարան դեպի փողոց`}
+            />
+            <Form.Check
+              type={"checkbox"}
+              id={`default`}
+              label={`Տեսարան դեպի քաղաք`}
+            />
           </div>
         </div>
-        <button className="add-item-btn" type="submit">
-          Ավելացնել գույք
-          <FaClipboardCheck />
-        </button>
+        <div className="form-panel">
+          <h5 className="h_header">Գին</h5>
+          <InputGroup className="mb-3">
+            <InputGroup.Text>$</InputGroup.Text>
+            <Form.Control aria-label="Amount (to the nearest dollar)" />
+            <InputGroup.Text>.00</InputGroup.Text>
+          </InputGroup>
+          <InputGroup className="mb-3">
+            <InputGroup.Text>$</InputGroup.Text>
+            <Form.Control aria-label="Amount (to the nearest dollar)" />
+            <InputGroup.Text>.00</InputGroup.Text>
+          </InputGroup>
+          <InputGroup className="mb-3">
+            <InputGroup.Text>$</InputGroup.Text>
+            <Form.Control aria-label="Amount (to the nearest dollar)" />
+            <InputGroup.Text>.00</InputGroup.Text>
+          </InputGroup>
+        </div>
+        <div className="form-panel">
+          <h5 className="h_header">Տեղեկություն</h5>
+          <div>
+            <Form.Control
+              as="textarea"
+              placeholder="Նկարագիր"
+              style={{ height: "140px" }}
+            />
+          </div>
+        </div>
       </form>
-      {type !== "Broker" && <AdderData />}
     </div>
   );
 };
