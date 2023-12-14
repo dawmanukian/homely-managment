@@ -3,6 +3,9 @@ import "./add-item.css";
 import { useForm } from "react-hook-form";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import Button from "react-bootstrap/Button";
+import { AiOutlineFileImage } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 
 const AddItem = ({ type }) => {
   const {
@@ -23,15 +26,23 @@ const AddItem = ({ type }) => {
     console.log(data);
   };
 
+  const [mainImage, setMainImage] = useState(null);
+
   return (
     <div className="add_item_page">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-panel">
-          <InputGroup className="mb-3" >
-            <Form.Control aria-describedby="basic-addon1" placeholder="Անուն Ազգանուն"/>
+          <InputGroup className="mb-3">
+            <Form.Control
+              aria-describedby="basic-addon1"
+              placeholder="Անուն Ազգանուն"
+            />
           </InputGroup>
           <InputGroup className="mb-3">
-            <Form.Control aria-describedby="basic-addon1" placeholder="Հեռ․ համար"/>
+            <Form.Control
+              aria-describedby="basic-addon1"
+              placeholder="Հեռ․ համար"
+            />
           </InputGroup>
         </div>
         <div className="ann_type_panel">
@@ -252,12 +263,90 @@ const AddItem = ({ type }) => {
           <h5 className="h_header">Տեղեկություն</h5>
           <div>
             <Form.Control
+              placeholder="Հայտարարության վերնագիր"
+              style={{ marginBottom: "15px" }}
+            />
+            <Form.Control
               as="textarea"
               placeholder="Նկարագիր"
               style={{ height: "140px" }}
             />
           </div>
         </div>
+        <div className="form-panel" style={{ margin: "20px 0px 20px 0px" }}>
+          {mainImage && (
+            <div>
+              <button
+                className="delete_img_btn"
+                onClick={(evn) => {
+                  evn.preventDefault();
+                  setMainImage(null);
+                }}
+              >
+                <AiOutlineClose />
+              </button>
+              <img
+                src={mainImage}
+                style={{ objectFit: "cover", width: "100%" }}
+              />
+            </div>
+          )}
+          <div>
+            <Button variant="primary" style={{ cursor: "pointer" }}>
+              <label
+                htmlFor="main_img"
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
+              >
+                <AiOutlineFileImage />
+                <span>Գույքի հիմնական նկար</span>
+              </label>
+            </Button>
+            <input
+              type="file"
+              id="main_img"
+              onChange={(evn) => {
+                setMainImage(URL.createObjectURL(evn.target.files[0]));
+              }}
+              multiple
+            />
+          </div>
+        </div>
+        <div className="form-panel">
+          <div>
+            <Button variant="primary" style={{ cursor: "pointer" }}>
+              <label
+                htmlFor="main_img"
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
+              >
+                <AiOutlineFileImage />
+                <span>Գույքի նկար</span>
+              </label>
+            </Button>
+            <input
+              type="file"
+              id="main_img"
+              onChange={(evn) => {
+                setMainImage(URL.createObjectURL(evn.target.files[0]));
+              }}
+              multiple
+            />
+          </div>
+        </div>
+        <Button variant="success" style={{ marginTop: "15px" }}>
+          Ավելացնել
+        </Button>
       </form>
     </div>
   );
