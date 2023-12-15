@@ -19,9 +19,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
+  margin: 20px 0px 20px 0px;
 }
 .checks label {
   cursor: pointer;
+  margin-right: 7px;
 }
 .form-panel {
   width: 350px;
@@ -51,6 +53,23 @@ input[type="file"] {
   background: rgb(242, 59, 59);
   height: 25px;
   width: 25px;
+}
+.item-images-panel {
+  max-height: 420px;
+  overflow-y: auto;
+  display: grid;
+  gap: 20px;
+}
+.item-images-panel div {
+  position: relative;
+}
+.currency-panel {
+  display: flex;
+  gap: 15px;
+}
+.currency-panel span {
+  cursor: pointer;
+  transition: all ease 0.3s;
 }
 @media screen and (max-width: 1560px){
   .add_item_page form {

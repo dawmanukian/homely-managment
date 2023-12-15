@@ -27,6 +27,8 @@ const AddItem = ({ type }) => {
   };
 
   const [mainImage, setMainImage] = useState(null);
+  const [itemImages, setItemImages] = useState([]);
+  const [currentCurrency, setCurrentCurrency] = useState(1);
 
   return (
     <div className="add_item_page">
@@ -113,34 +115,71 @@ const AddItem = ({ type }) => {
             </Form.Select>
           </div>
           <div>
-            <Form.Check type="switch" id="custom-switch" label="Նորակառույց" />
-            <Form.Check type="switch" id="custom-switch" label="Ունի վերելակ" />
+            <Form.Check
+              type="switch"
+              id="new-buil-switch"
+              label="Նորակառույց"
+              {...register("new_building")}
+            />
+            <Form.Check
+              type="switch"
+              id="elevator-switch"
+              label="Ունի վերելակ"
+              {...register("elevator")}
+            />
           </div>
           <div>
             <span>Հարկայնություն</span>
             <InputGroup className="mb-3">
-              <Form.Control aria-describedby="basic-addon1" />
+              <Form.Control
+                aria-describedby="basic-addon1"
+                {...register("number_of_floors")}
+              />
             </InputGroup>
           </div>
           <div>
-            <Form.Check type={"checkbox"} id={`default`} label={`Դոմոֆոն`} />
-            <Form.Check type={"checkbox"} id={`default`} label={`Դռնապահ`} />
             <Form.Check
               type={"checkbox"}
-              id={`default`}
+              id={`check1`}
+              label={`Դոմոֆոն`}
+              value={"Դոմոֆոն"}
+              {...register("facilities_in_the_building")}
+            />
+            <Form.Check
+              type={"checkbox"}
+              id={`check2`}
+              label={`Դռնապահ`}
+              value={"Դռնապահ"}
+              {...register("facilities_in_the_building")}
+            />
+            <Form.Check
+              type={"checkbox"}
+              id={`check3`}
               label={`Խաղահրապարակ`}
+              value={`Խաղահրապարակ`}
+              {...register("facilities_in_the_building")}
             />
             <Form.Check
               type={"checkbox"}
-              id={`default`}
+              id={`check4`}
               label={`Բացօթյա կայանատեղի`}
+              value={`Բացօթյա կայանատեղի`}
+              {...register("facilities_in_the_building")}
             />
             <Form.Check
               type={"checkbox"}
-              id={`default`}
+              id={`check5`}
               label={`Ծածկապատ կայանատեղի`}
+              value={`Ծածկապատ կայանատեղի`}
+              {...register("facilities_in_the_building")}
             />
-            <Form.Check type={"checkbox"} id={`default`} label={`Ավտոտնակ`} />
+            <Form.Check
+              type={"checkbox"}
+              id={`check6`}
+              label={`Ավտոտնակ`}
+              value={`Ավտոտնակ`}
+              {...register("facilities_in_the_building")}
+            />
           </div>
         </div>
         <hr />
@@ -149,60 +188,63 @@ const AddItem = ({ type }) => {
           <div>
             <span>Մակերես</span>
             <InputGroup className="mb-3">
-              <Form.Control aria-describedby="basic-addon2" />
+              <Form.Control
+                aria-describedby="basic-addon2"
+                {...register("area", { required: true })}
+              />
               <InputGroup.Text id="basic-addon2">ք․ մ․</InputGroup.Text>
             </InputGroup>
           </div>
           <div>
             <span>Սենյակների քանակ</span>
-            <Form.Select aria-label="Default select example">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12+</option>
+            <Form.Select {...register("rooms_number", { required: true })}>
+              <option value={"1"}>1</option>
+              <option value={"2"}>2</option>
+              <option value={"3"}>3</option>
+              <option value={"4"}>4</option>
+              <option value={"5"}>5</option>
+              <option value={"6"}>6</option>
+              <option value={"7"}>7</option>
+              <option value={"8"}>8</option>
+              <option value={"9"}>9</option>
+              <option value={"10"}>10</option>
+              <option value={"11"}>11</option>
+              <option value={"12+"}>12+</option>
             </Form.Select>
           </div>
           <div>
             <span>Առաստաղի բարձրություն</span>
-            <Form.Select aria-label="Default select example">
-              <option>2,5 մ</option>
-              <option>2,6 մ</option>
-              <option>2,7 մ</option>
-              <option>2,75 մ</option>
-              <option>2,8 մ</option>
-              <option>3 մ</option>
-              <option>3,2 մ</option>
-              <option>3,5 մ</option>
+            <Form.Select {...register("ceiling_height", { required: true})}>
+              <option value={"2,5"}>2,5 մ</option>
+              <option value={"2,6"}>2,6 մ</option>
+              <option value={"2,7"}>2,7 մ</option>
+              <option value={"2,75"}>2,75 մ</option>
+              <option value={"2,8"}>2,8 մ</option>
+              <option value={"3"}>3 մ</option>
+              <option value={"3,2"}>3,2 մ</option>
+              <option value={"3,5"}>3,5 մ</option>
             </Form.Select>
           </div>
           <div>
             <span>Հարկ</span>
-            <Form.Select>{add_floor()}</Form.Select>
+            <Form.Select {...register("floor", {required: true})}>{add_floor()}</Form.Select>
           </div>
           <div>
             <span>Պատշգամբ</span>
-            <Form.Select>
-              <option>Առկա չէ</option>
-              <option>Բաց պատշգամբ</option>
-              <option>Փակ պատշգամբ</option>
-              <option>Մի քանի պատշգամբ</option>
+            <Form.Select {...register("balcony")}>
+              <option value={'Առկա չէ'}>Առկա չէ</option>
+              <option value={'Բաց պատշգամբ'}>Բաց պատշգամբ</option>
+              <option value={'Փակ պատշգամբ'}>Փակ պատշգամբ</option>
+              <option value={'Մի քանի պատշգամբ'}>Մի քանի պատշգամբ</option>
             </Form.Select>
           </div>
           <div>
             <span>Կահույք</span>
-            <Form.Select>
-              <option>Առկա չէ</option>
-              <option>Առկա է</option>
-              <option>Մասնակի կահույք</option>
-              <option>Համաձայնությամբ</option>
+            <Form.Select {...register("furniture", {required: true})}>
+              <option value={'Առկա չէ'}>Առկա չէ</option>
+              <option value={'Առկա է'}>Առկա է</option>
+              <option value={'Մասնակի կահույք'}>Մասնակի կահույք</option>
+              <option value={'Համաձայնությամբ'}>Համաձայնությամբ</option>
             </Form.Select>
           </div>
           <div>
@@ -241,22 +283,70 @@ const AddItem = ({ type }) => {
             />
           </div>
         </div>
+        <hr />
         <div className="form-panel">
           <h5 className="h_header">Գին</h5>
-          <InputGroup className="mb-3">
-            <InputGroup.Text>$</InputGroup.Text>
-            <Form.Control aria-label="Amount (to the nearest dollar)" />
-            <InputGroup.Text>.00</InputGroup.Text>
+          <div className="currency-panel">
+            <InputGroup.Text
+              style={
+                currentCurrency === 1
+                  ? { background: "#0D6EFDFF", color: "#fff" }
+                  : null
+              }
+              onClick={() => setCurrentCurrency(1)}
+            >
+              ֏
+            </InputGroup.Text>
+            <InputGroup.Text
+              onClick={() => setCurrentCurrency(2)}
+              style={
+                currentCurrency === 2
+                  ? { background: "#0D6EFDFF", color: "#fff" }
+                  : null
+              }
+            >
+              $
+            </InputGroup.Text>
+            <InputGroup.Text
+              onClick={() => setCurrentCurrency(3)}
+              style={
+                currentCurrency === 3
+                  ? { background: "#0D6EFDFF", color: "#fff" }
+                  : null
+              }
+            >
+              ₽
+            </InputGroup.Text>
+          </div>
+          <InputGroup
+            className="mb-3"
+            style={
+              currentCurrency === 1 ? { display: "flex" } : { display: "none" }
+            }
+            {...register("price_amd")}
+          >
+            <InputGroup.Text>֏</InputGroup.Text>
+            <Form.Control type="number" placeholder="Արժեքը դրամով" />
           </InputGroup>
-          <InputGroup className="mb-3">
+          <InputGroup
+            className="mb-3"
+            style={
+              currentCurrency === 2 ? { display: "flex" } : { display: "none" }
+            }
+            {...register("price_usd")}
+          >
             <InputGroup.Text>$</InputGroup.Text>
-            <Form.Control aria-label="Amount (to the nearest dollar)" />
-            <InputGroup.Text>.00</InputGroup.Text>
+            <Form.Control type="number" placeholder="Արժեքը դոլարով" />
           </InputGroup>
-          <InputGroup className="mb-3">
-            <InputGroup.Text>$</InputGroup.Text>
-            <Form.Control aria-label="Amount (to the nearest dollar)" />
-            <InputGroup.Text>.00</InputGroup.Text>
+          <InputGroup
+            className="mb-3"
+            style={
+              currentCurrency === 3 ? { display: "flex" } : { display: "none" }
+            }
+            {...register("price_rub")}
+          >
+            <InputGroup.Text>₽</InputGroup.Text>
+            <Form.Control type="number" placeholder="Արժեքը ռուբլով" />
           </InputGroup>
         </div>
         <div className="form-panel">
@@ -265,11 +355,13 @@ const AddItem = ({ type }) => {
             <Form.Control
               placeholder="Հայտարարության վերնագիր"
               style={{ marginBottom: "15px" }}
+              {...register("ann_header", {required: true})}
             />
             <Form.Control
               as="textarea"
               placeholder="Նկարագիր"
               style={{ height: "140px" }}
+              {...register("ann_description", {required: true})}
             />
           </div>
         </div>
@@ -318,10 +410,28 @@ const AddItem = ({ type }) => {
           </div>
         </div>
         <div className="form-panel">
+          <div className="item-images-panel">
+            {itemImages.map((el) => {
+              return (
+                <div>
+                  <button
+                    className="delete_img_btn"
+                    onClick={(evn) => {
+                      evn.preventDefault();
+                      setItemImages(itemImages.filter((image) => image !== el));
+                    }}
+                  >
+                    <AiOutlineClose />
+                  </button>
+                  <img src={el} width={"100%"} />
+                </div>
+              );
+            })}
+          </div>
           <div>
             <Button variant="primary" style={{ cursor: "pointer" }}>
               <label
-                htmlFor="main_img"
+                htmlFor="item_img"
                 style={{
                   cursor: "pointer",
                   display: "flex",
@@ -336,15 +446,18 @@ const AddItem = ({ type }) => {
             </Button>
             <input
               type="file"
-              id="main_img"
+              id="item_img"
               onChange={(evn) => {
-                setMainImage(URL.createObjectURL(evn.target.files[0]));
+                setItemImages([
+                  ...itemImages,
+                  URL.createObjectURL(evn.target.files[0]),
+                ]);
               }}
               multiple
             />
           </div>
         </div>
-        <Button variant="success" style={{ marginTop: "15px" }}>
+        <Button variant="success" style={{ marginTop: "15px" }} type="submit">
           Ավելացնել
         </Button>
       </form>
