@@ -25,6 +25,7 @@ const AddItem = ({ type }) => {
   };
 
   const [streetName, setStreetName] = useState("");
+  const [region, setRegion] = useState("Աջափնյակ")
   const [mainImage, setMainImage] = useState(null);
   const [itemImages, setItemImages] = useState([]);
   const [currentCurrency, setCurrentCurrency] = useState(1);
@@ -102,7 +103,7 @@ const AddItem = ({ type }) => {
             </div>
             <div>
               <span>Շրջան</span>
-              <Form.Select aria-label="Default select example">
+              <Form.Select aria-label="Default select example" onChange={(evn) => setRegion(evn.target.value)}>
                 <option value="Աջափնյակ">Աջափնյակ</option>
                 <option value="Ավան">Ավան</option>
                 <option value="Արաբկիր">Արաբկիր</option>
@@ -132,6 +133,7 @@ const AddItem = ({ type }) => {
           {streetName !== "" && (
             <SelectStreetPanel
               streetName={streetName}
+              region={region}
               onSelect={(street) => setStreetName(street)}
             />
           )}
