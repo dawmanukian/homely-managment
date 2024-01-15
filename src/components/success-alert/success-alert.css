@@ -1,0 +1,20 @@
+.success-alert {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+#alert-message {
+    animation: alert_animation 0.7s;
+}
+@keyframes alert_animation {
+    from {
+        transform: scale(0.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,12 @@
+.street_name {
+    height: 45px;
+    cursor: pointer;
+}
+.all_streets {
+    max-height: 450px;
+    overflow-y: auto;
+}
+.selected_street_icon {
+    color: green;
+    margin-left: 7px;
+}

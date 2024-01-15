@@ -47,6 +47,8 @@
 }
 .item-type-panel {
   margin-bottom: 15px;
+  display: grid;
+  grid-gap: 17px;
 }
 .announcement-filters {
   margin-top: 10px;

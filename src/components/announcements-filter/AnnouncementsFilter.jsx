@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { FaRocket } from "react-icons/fa6";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 
-const AnnouncementsFilter = () => {
+const AnnouncementsFilter = ({ onSearch }) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -21,7 +21,11 @@ const AnnouncementsFilter = () => {
     <div className="announcements-filter">
       <form className="filters" onSubmit={handleSubmit(onSubmit)}>
         <div className="filter-inputs">
-          <input placeholder="Որոնել..." className="filter-search-inpt" />
+          <input
+            placeholder="Որոնել..."
+            className="filter-search-inpt"
+            onChange={(evn) => onSearch(evn.target.value)}
+          />
           <div className="inpts-panel">
             <input
               placeholder="Գին սկսած"
@@ -60,9 +64,19 @@ const AnnouncementsFilter = () => {
           </label>
           <div className="select-region">
             <select>
-              <option>Երևան</option>
-              <option>Երևան</option>
-              <option>Երևան</option>
+              <option value="Աջափնյակ">Աջափնյակ</option>
+              <option value="Ավան">Ավան</option>
+              <option value="Արաբկիր">Արաբկիր</option>
+              <option value="Դավթաշեն">Դավթաշեն</option>
+              <option value="Էրեբունի">Էրեբունի</option>
+              <option value="Կենտրոն">Կենտրոն</option>
+              <option value="Փոքր կենտրոն">Փոքր կենտրոն</option>
+              <option value="Մալաթիա-Սեբաստիա">Մալաթիա-Սեբաստիա</option>
+              <option value="Նոր Նորք">Նոր Նորք</option>
+              <option value="Նորք-Մարաշ">Նորք-Մարաշ</option>
+              <option value="Նուբարաշեն">Նուբարաշեն</option>
+              <option value="Շենգավիթ">Շենգավիթ</option>
+              <option value="Քանաքեռ-Զեյթուն">Քանաքեռ-Զեյթուն</option>
             </select>
           </div>
         </div>
