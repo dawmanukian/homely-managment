@@ -248,6 +248,14 @@ const AddItem = ({ type }) => {
               </Form.Select>
             </div>
             <div>
+              <span>Սանհանգույցների քանակ</span>
+              <Form.Select {...register("bathroom_number", { required: true })}>
+                <option value={"1"}>1</option>
+                <option value={"2"}>2</option>
+                <option value={"3"}>3+</option>
+              </Form.Select>
+            </div>
+            <div>
               <span>Առաստաղի բարձրություն</span>
               <Form.Select {...register("ceiling_height", { required: true })}>
                 <option value={"2,5"}>2,5 մ</option>
@@ -353,83 +361,17 @@ const AddItem = ({ type }) => {
           <hr />
           <div className="form-panel">
             <h5 className="h_header">Գին</h5>
-            <div className="currency-panel">
-              <InputGroup.Text
-                style={
-                  currentCurrency === 1
-                    ? { background: "#0D6EFDFF", color: "#fff" }
-                    : null
-                }
-                onClick={() => setCurrentCurrency(1)}
-              >
-                ֏
-              </InputGroup.Text>
-              <InputGroup.Text
-                onClick={() => setCurrentCurrency(2)}
-                style={
-                  currentCurrency === 2
-                    ? { background: "#0D6EFDFF", color: "#fff" }
-                    : null
-                }
-              >
-                $
-              </InputGroup.Text>
-              <InputGroup.Text
-                onClick={() => setCurrentCurrency(3)}
-                style={
-                  currentCurrency === 3
-                    ? { background: "#0D6EFDFF", color: "#fff" }
-                    : null
-                }
-              >
-                ₽
-              </InputGroup.Text>
-            </div>
             <InputGroup
               className="mb-3"
-              style={
-                currentCurrency === 1
-                  ? { display: "flex" }
-                  : { display: "none" }
-              }
-              {...register("price_amd")}
-            >
-              <InputGroup.Text>֏</InputGroup.Text>
-              <Form.Control type="number" placeholder="Արժեքը դրամով" />
-            </InputGroup>
-            <InputGroup
-              className="mb-3"
-              style={
-                currentCurrency === 2
-                  ? { display: "flex" }
-                  : { display: "none" }
-              }
               {...register("price_usd")}
             >
               <InputGroup.Text>$</InputGroup.Text>
               <Form.Control type="number" placeholder="Արժեքը դոլարով" />
             </InputGroup>
-            <InputGroup
-              className="mb-3"
-              style={
-                currentCurrency === 3
-                  ? { display: "flex" }
-                  : { display: "none" }
-              }
-              {...register("price_rub")}
-            >
-              <InputGroup.Text>₽</InputGroup.Text>
-              <Form.Control type="number" placeholder="Արժեքը ռուբլով" />
-            </InputGroup>
           </div>
           <div className="form-panel">
             <h5 className="h_header">Տեղեկություն</h5>
             <div>
-              <Form.Control
-                placeholder="Հայտարարության վերնագիր"
-                style={{ marginBottom: "15px" }}
-                {...register("ann_header", { required: true })}
-              />
               <Form.Control
                 as="textarea"
                 placeholder="Նկարագիր"

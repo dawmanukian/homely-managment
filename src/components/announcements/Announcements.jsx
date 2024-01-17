@@ -71,14 +71,14 @@ const Announcements = () => {
   const [showData, setShowData] = useState(ann);
   return (
     <div className="workers-page">
-      <div style={{ height: "100px" }}></div>
+      <div style={{ height: "100px" }}></div> 
       <AnnouncementsFilter
         onSearch={(search) => {
           search !== ""
             ? setShowData(
                 ann.filter(
                   (el) =>
-                    el.broker_phone === search ||
+                    el.broker_phone === `+374${search}` ||
                     el.header.toLowerCase().startsWith(search.toLowerCase())
                 )
               )
