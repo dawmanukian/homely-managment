@@ -25,7 +25,7 @@ const AddItem = ({ type }) => {
   };
 
   const [streetName, setStreetName] = useState("");
-  const [region, setRegion] = useState("Աջափնյակ")
+  const [region, setRegion] = useState("Աջափնյակ");
   const [mainImage, setMainImage] = useState(null);
   const [itemImages, setItemImages] = useState([]);
   const [currentCurrency, setCurrentCurrency] = useState(1);
@@ -103,7 +103,10 @@ const AddItem = ({ type }) => {
             </div>
             <div>
               <span>Շրջան</span>
-              <Form.Select aria-label="Default select example" onChange={(evn) => setRegion(evn.target.value)}>
+              <Form.Select
+                aria-label="Default select example"
+                onChange={(evn) => setRegion(evn.target.value)}
+              >
                 <option value="Աջափնյակ">Աջափնյակ</option>
                 <option value="Ավան">Ավան</option>
                 <option value="Արաբկիր">Արաբկիր</option>
@@ -119,15 +122,29 @@ const AddItem = ({ type }) => {
                 <option value="Քանաքեռ-Զեյթուն">Քանաքեռ-Զեյթուն</option>
               </Form.Select>
             </div>
-            <div>
-              <span>Փողոց</span>
-              <InputGroup className="mb-3">
-                <Form.Control
-                  aria-describedby="basic-addon1"
-                  value={streetName}
-                  onChange={(evn) => setStreetName(evn.target.value)}
-                />
-              </InputGroup>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <div>
+                <span>Փողոց</span>
+                <InputGroup className="mb-3">
+                  <Form.Control
+                    aria-describedby="basic-addon1"
+                    value={streetName}
+                    onChange={(evn) => setStreetName(evn.target.value)}
+                  />
+                </InputGroup>
+              </div>
+              <div>
+                <span>Շենք</span>
+                <InputGroup className="mb-3">
+                  <Form.Control aria-describedby="basic-addon1" />
+                </InputGroup>
+              </div>
+              <div>
+                <span>Բնակարան</span>
+                <InputGroup className="mb-3">
+                  <Form.Control aria-describedby="basic-addon1" />
+                </InputGroup>
+              </div>
             </div>
           </div>
           {streetName !== "" && (
@@ -361,10 +378,7 @@ const AddItem = ({ type }) => {
           <hr />
           <div className="form-panel">
             <h5 className="h_header">Գին</h5>
-            <InputGroup
-              className="mb-3"
-              {...register("price_usd")}
-            >
+            <InputGroup className="mb-3" {...register("price_usd")}>
               <InputGroup.Text>$</InputGroup.Text>
               <Form.Control type="number" placeholder="Արժեքը դոլարով" />
             </InputGroup>
