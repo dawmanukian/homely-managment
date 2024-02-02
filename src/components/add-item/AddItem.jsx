@@ -505,6 +505,21 @@ const AddItem = ({ type }) => {
                 required={true}
               />
             </div>
+            <InputGroup className="mb-3">
+              <Form.Control
+                placeholder="YouTube հղում"
+                aria-describedby="basic-addon2"
+                {...register("video_url", { required: true })}
+              />
+            </InputGroup>
+            <div>
+              <input type="radio" id="exclusive" name="tp" style={{marginRight: '10px'}}/>
+              <label htmlFor="exclusive">Էքսկլյուզիվ</label>
+            </div>
+            <div>
+              <input type="radio" id="hatuk" name="tp" style={{marginRight: '10px'}}/>
+              <label htmlFor="hatuk">Հատուկ առաջարկ</label>
+            </div>
           </div>
           <Button variant="success" style={{ marginTop: "15px" }} type="submit">
             Ավելացնել
