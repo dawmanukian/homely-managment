@@ -71,6 +71,19 @@ input[type="file"] {
   cursor: pointer;
   transition: all ease 0.3s;
 }
+.hidden_img_check {
+  position: absolute;
+  background: #F0F2F5FF;
+  color: #333;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  gap: 5px;
+  width: 80%;
+  border-radius: 5px;
+  bottom: 20px;
+  left: 20px;
+}
 @media screen and (max-width: 1560px){
   .add_item_page form {
     width: 100%;

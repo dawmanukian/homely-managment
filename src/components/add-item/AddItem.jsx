@@ -457,7 +457,7 @@ const AddItem = ({ type }) => {
           </div>
           <div className="form-panel">
             <div className="item-images-panel">
-              {itemImages.map((el) => {
+              {itemImages.map((el, index) => {
                 return (
                   <div>
                     <button
@@ -472,6 +472,15 @@ const AddItem = ({ type }) => {
                       <AiOutlineClose />
                     </button>
                     <img src={el} width={"100%"} />
+                    <div className="hidden_img_check">
+                      <input
+                        type="checkbox"
+                        id={el}
+                        value={index}
+                        {...register("hidden_images")}
+                      />
+                      <label htmlFor={el}>ՉԻ երևում հաճախորդին</label>
+                    </div>
                   </div>
                 );
               })}
@@ -513,11 +522,21 @@ const AddItem = ({ type }) => {
               />
             </InputGroup>
             <div>
-              <input type="radio" id="exclusive" name="tp" style={{marginRight: '10px'}}/>
+              <input
+                type="radio"
+                id="exclusive"
+                name="tp"
+                style={{ marginRight: "10px" }}
+              />
               <label htmlFor="exclusive">Էքսկլյուզիվ</label>
             </div>
             <div>
-              <input type="radio" id="hatuk" name="tp" style={{marginRight: '10px'}}/>
+              <input
+                type="radio"
+                id="hatuk"
+                name="tp"
+                style={{ marginRight: "10px" }}
+              />
               <label htmlFor="hatuk">Հատուկ առաջարկ</label>
             </div>
           </div>
