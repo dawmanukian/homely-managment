@@ -8,6 +8,9 @@ import { AiOutlineFileImage } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import SuccessAlert from "../success-alert/SuccessAlert";
 import SelectStreetPanel from "../select-street-panel/SelectStreetPanel";
+import arm_flag from "../../img/AM - Armenia.png";
+import ru_flag from "../../img/RU - Russian Federation.jpg";
+import us_flag from "../../img/US - United States.jpg";
 
 const AddItem = ({ type }) => {
   const {
@@ -385,10 +388,42 @@ const AddItem = ({ type }) => {
           </div>
           <div className="form-panel">
             <h5 className="h_header">Տեղեկություն</h5>
-            <div>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+            >
+              <img
+                src={arm_flag}
+                className="flag_img"
+                height={"25px"}
+                width={"35px"}
+              />
               <Form.Control
                 as="textarea"
                 placeholder="Նկարագիր"
+                style={{ height: "140px" }}
+                {...register("ann_description", { required: true })}
+              />
+              <img
+                src={ru_flag}
+                className="flag_img"
+                height={"25px"}
+                width={"35px"}
+              />
+              <Form.Control
+                as="textarea"
+                placeholder="Նկարագիր ( Ռուսերեն )"
+                style={{ height: "140px" }}
+                {...register("ann_description", { required: true })}
+              />
+              <img
+                src={us_flag}
+                className="flag_img"
+                height={"25px"}
+                width={"35px"}
+              />
+              <Form.Control
+                as="textarea"
+                placeholder="Նկարագիր ( Անգլերեն )"
                 style={{ height: "140px" }}
                 {...register("ann_description", { required: true })}
               />

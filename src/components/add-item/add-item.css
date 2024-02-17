@@ -12,7 +12,7 @@
   background: #fff;
   padding: 25px;
 }
-.h_header{
+.h_header {
   font-weight: bold;
 }
 .checks {
@@ -73,23 +73,28 @@ input[type="file"] {
 }
 .hidden_img_check {
   position: absolute;
-  background: #F0F2F5FF;
+  background: #f0f2f5ff;
   color: #333;
   cursor: pointer;
   padding: 5px;
   display: flex;
+  align-items: center;
   gap: 5px;
   width: 80%;
   border-radius: 5px;
   bottom: 20px;
   left: 20px;
 }
-@media screen and (max-width: 1560px){
+.flag_img {
+  border-radius: 3px;
+  border: 1px solid #333;
+}
+@media screen and (max-width: 1560px) {
   .add_item_page form {
     width: 100%;
   }
 }
-@media screen and (max-width: 510px){ 
+@media screen and (max-width: 510px) {
   .form-panel {
     width: 100%;
   }
