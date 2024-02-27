@@ -37,7 +37,7 @@ const AddItem = ({ type }) => {
   const [itemImages, setItemImages] = useState([]);
   const [currentCurrency, setCurrentCurrency] = useState(1);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-  const [] = useState()
+  const [] = useState();
 
   const onSubmit = (data) => {
     setShowSuccessAlert(true);
@@ -542,6 +542,16 @@ const AddItem = ({ type }) => {
                 style={{ marginRight: "10px" }}
               />
               <label htmlFor="hatuk">Հատուկ առաջարկ</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="scr"
+                value={"special"}
+                {...register("proposal")}
+                style={{ marginRight: "10px" }}
+              />
+              <label htmlFor="scr">Նկարված է</label>
             </div>
           </div>
           <Button variant="success" style={{ marginTop: "15px" }} type="submit">
