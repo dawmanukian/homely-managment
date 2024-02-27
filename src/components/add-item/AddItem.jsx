@@ -37,24 +37,31 @@ const AddItem = ({ type }) => {
   const [itemImages, setItemImages] = useState([]);
   const [currentCurrency, setCurrentCurrency] = useState(1);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-  const [] = useState();
 
   const onSubmit = (data) => {
     setShowSuccessAlert(true);
     const allData = { ...data, main_img: mainImage, item_images: itemImages };
     console.log(allData);
   };
+  const [dragging, setDragging] = useState(false);
+  const [items, setItems] = useState([]);
 
-  const dragStartHandler = (evn, el) => {
-    console.log("drag", el);
+  const handleDragStart = (e, index) => {
+    e.dataTransfer.setData("index", index);
+    setDragging(true);
   };
-  const dragEndHandler = (evn) => {};
-  const dragOverHandler = (evn) => {
-    evn.preventDefault();
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
   };
-  const dropHandler = (evn, el) => {
-    evn.preventDefault();
-    console.log("drop", el);
+
+  const handleDrop = (e, dropIndex) => {
+    const dragIndex = e.dataTransfer.getData("index");
+    const newItems = [...items];
+    const draggedItem = newItems.splice(dragIndex, 1)[0];
+    newItems.splice(dropIndex, 0, draggedItem);
+    setItems(newItems);
+    setDragging(false);
   };
 
   return (
@@ -456,36 +463,32 @@ const AddItem = ({ type }) => {
               </div>
             </div>
           </div>
-          <div className="form-panel">
-            <div className="item-images-panel">
-              {itemImages.map((el, index) => {
-                return (
-                  <div
-                    onDragStart={(evn) => dragStartHandler(evn, el)}
-                    onDragLeave={(evn) => dragEndHandler(evn)}
-                    onDragEnd={(evn) => dragEndHandler(evn)}
-                    onDragOver={(evn) => dragOverHandler(evn)}
-                    onDrop={(evn) => dropHandler(evn, el)}
-                    draggable={true}
-                    key={index}
-                    className="img-box"
+          <div className="item-images-panel">
+            {items.map((el, index) => {
+              return (
+                <div
+                  draggable={true}
+                  key={el.id}
+                  className="img-box"
+                  onDragStart={(e) => handleDragStart(e, index)}
+                  onDragOver={handleDragOver}
+                  onDrop={(e) => handleDrop(e, index)}
+                >
+                  <button
+                    className="delete_img_btn"
+                    onClick={(evn) => {
+                      evn.preventDefault();
+                      setItemImages(itemImages.filter((image) => image !== el));
+                    }}
                   >
-                    <button
-                      className="delete_img_btn"
-                      onClick={(evn) => {
-                        evn.preventDefault();
-                        setItemImages(
-                          itemImages.filter((image) => image !== el)
-                        );
-                      }}
-                    >
-                      <AiOutlineClose />
-                    </button>
-                    <img src={el} width={"100%"} />
-                  </div>
-                );
-              })}
-            </div>
+                    <AiOutlineClose />
+                  </button>
+                  <img src={el.text} width={"100%"} />
+                </div>
+              );
+            })}
+          </div>
+          <div className="form-panel">
             <div>
               <Button variant="primary" style={{ cursor: "pointer" }}>
                 <label
@@ -506,9 +509,12 @@ const AddItem = ({ type }) => {
                 type="file"
                 id="item_img"
                 onChange={(evn) => {
-                  setItemImages([
-                    ...itemImages,
-                    URL.createObjectURL(evn.target.files[0]),
+                  setItems([
+                    ...items,
+                    {
+                      id: Math.random(),
+                      text: URL.createObjectURL(evn.target.files[0]),
+                    },
                   ]);
                 }}
                 multiple

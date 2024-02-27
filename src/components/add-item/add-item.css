@@ -55,7 +55,11 @@ input[type="file"] {
   width: 25px;
 }
 .item-images-panel {
-  max-height: 420px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  max-width: 750px;
+  flex-wrap: wrap;
+  width: 100%;
   display: flex;
   gap: 20px;
 }
@@ -89,15 +93,15 @@ input[type="file"] {
   border: 1px solid #333;
 }
 .img-box {
-  height: 150px;
-  width: 150px;
+  width: 200px;
   border-radius: 12px;
   cursor: grab;
 }
 .img-box img {
   width: 100%;
+  min-width: 170px;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 12px;
 }
 @media screen and (max-width: 1560px) {
