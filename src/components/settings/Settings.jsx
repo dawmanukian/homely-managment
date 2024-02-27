@@ -4,7 +4,7 @@ import { FaCameraRotate } from "react-icons/fa6";
 
 const Settings = () => {
   const [profileImg, setProfileImg] = useState(
-    "https://www.catbreedslist.com/cat-wallpapers/white-kitten-cute-big-eyes-art-1024x768.jpg"
+    'https://www.computerhope.com/jargon/g/guest-user.png'
   );
 
   return (
@@ -18,9 +18,13 @@ const Settings = () => {
               width={"250px"}
               className="user-img"
             />
-            <input type="file" id="change-img" onChange={(evn) => {
-              setProfileImg(URL.createObjectURL(evn.target.files["0"]))
-            }} />
+            <input
+              type="file"
+              id="change-img"
+              onChange={(evn) => {
+                setProfileImg(URL.createObjectURL(evn.target.files["0"]));
+              }}
+            />
             <label htmlFor="change-img" className="change-profile-img">
               <FaCameraRotate />
             </label>

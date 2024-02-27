@@ -201,9 +201,9 @@ const SelectStreetPanel = ({ streetName, onSelect, region }) => {
     <div className="all_streets">
       {streetsInYerevan[0][region.toUpperCase()]
         .filter((el) => el.toLowerCase().startsWith(streetName.toLowerCase()))
-        .map((el) => {
+        .map((el, index) => {
           return (
-            <div onClick={() => onSelect(el)} className={"street_name"}>
+            <div key={index} onClick={() => onSelect(el)} className={"street_name"}>
               <span>{el}</span>
               {el.toLowerCase() === streetName.toLowerCase() && (
                 <FaCheck className="selected_street_icon" />

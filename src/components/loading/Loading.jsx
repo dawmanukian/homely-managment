@@ -4,7 +4,7 @@ import "./loading.css";
 const Loading = () => {
   return (
     <div className="loading-page">
-      <div class="ring">
+      <div className="ring">
         <p>HOMELY Team</p>
         <span></span>
       </div>

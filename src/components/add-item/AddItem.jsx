@@ -22,7 +22,11 @@ const AddItem = ({ type }) => {
   const add_floor = () => {
     let x = new Array();
     for (let index = 1; index <= 32; index++) {
-      x.push(<option value={index}>{index}</option>);
+      x.push(
+        <option value={index} key={index}>
+          {index}
+        </option>
+      );
     }
     return x;
   };
@@ -33,12 +37,26 @@ const AddItem = ({ type }) => {
   const [itemImages, setItemImages] = useState([]);
   const [currentCurrency, setCurrentCurrency] = useState(1);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [] = useState()
 
   const onSubmit = (data) => {
     setShowSuccessAlert(true);
     const allData = { ...data, main_img: mainImage, item_images: itemImages };
     console.log(allData);
   };
+
+  const dragStartHandler = (evn, el) => {
+    console.log("drag", el);
+  };
+  const dragEndHandler = (evn) => {};
+  const dragOverHandler = (evn) => {
+    evn.preventDefault();
+  };
+  const dropHandler = (evn, el) => {
+    evn.preventDefault();
+    console.log("drop", el);
+  };
+
   return (
     <>
       {showSuccessAlert && (
@@ -54,12 +72,14 @@ const AddItem = ({ type }) => {
               <Form.Control
                 aria-describedby="basic-addon1"
                 placeholder="Անուն Ազգանուն"
+                {...register("owner")}
               />
             </InputGroup>
             <InputGroup className="mb-3">
               <Form.Control
                 aria-describedby="basic-addon1"
                 placeholder="Հեռ․ համար"
+                {...register("owner_phone")}
               />
             </InputGroup>
           </div>
@@ -71,7 +91,7 @@ const AddItem = ({ type }) => {
                 <input
                   id="type_1"
                   type="radio"
-                  value={1}
+                  value={"sell"}
                   {...register("ann_type", { required: true })}
                 />
               </div>
@@ -80,7 +100,7 @@ const AddItem = ({ type }) => {
                 <input
                   id="type_2"
                   type="radio"
-                  value={2}
+                  value={"rent"}
                   {...register("ann_type", { required: true })}
                 />
               </div>
@@ -89,7 +109,7 @@ const AddItem = ({ type }) => {
                 <input
                   id="type_3"
                   type="radio"
-                  value={3}
+                  value={"rent_and_sell"}
                   {...register("ann_type", { required: true })}
                 />
               </div>
@@ -99,9 +119,12 @@ const AddItem = ({ type }) => {
             <h5 className="h_header">Գտնվելու վայրը</h5>
             <div>
               <span>Մարզ</span>
-              <Form.Select aria-label="Default select example">
-                <option>Երևան</option>
-                <option>Կոտայք</option>
+              <Form.Select
+                aria-label="Default select example"
+                {...register("marz", { required: true })}
+              >
+                <option value={"yerevan"}>Երևան</option>
+                <option value={"kotayk"}>Կոտայք</option>
               </Form.Select>
             </div>
             <div>
@@ -109,6 +132,7 @@ const AddItem = ({ type }) => {
               <Form.Select
                 aria-label="Default select example"
                 onChange={(evn) => setRegion(evn.target.value)}
+                {...register("region", { required: true })}
               >
                 <option value="Աջափնյակ">Աջափնյակ</option>
                 <option value="Ավան">Ավան</option>
@@ -132,6 +156,7 @@ const AddItem = ({ type }) => {
                   <Form.Control
                     aria-describedby="basic-addon1"
                     value={streetName}
+                    {...register("street", { required: true })}
                     onChange={(evn) => setStreetName(evn.target.value)}
                   />
                 </InputGroup>
@@ -139,13 +164,19 @@ const AddItem = ({ type }) => {
               <div>
                 <span>Շենք</span>
                 <InputGroup className="mb-3">
-                  <Form.Control aria-describedby="basic-addon1" />
+                  <Form.Control
+                    aria-describedby="basic-addon1"
+                    {...register("building", { required: true })}
+                  />
                 </InputGroup>
               </div>
               <div>
                 <span>Բնակարան</span>
                 <InputGroup className="mb-3">
-                  <Form.Control aria-describedby="basic-addon1" />
+                  <Form.Control
+                    aria-describedby="basic-addon1"
+                    {...register("flat", { required: true })}
+                  />
                 </InputGroup>
               </div>
             </div>
@@ -162,35 +193,23 @@ const AddItem = ({ type }) => {
             <h5 className="h_header">Շենքի մասին</h5>
             <div>
               <span>Շենքի տիպ</span>
-              <Form.Select aria-label="Default select example">
-                <option>Պանելային</option>
-                <option>Քարե</option>
-                <option>Մոնոլիտ</option>
-                <option>Այլ</option>
+              <Form.Select
+                aria-label="Default select example"
+                {...register("building_type", { required: true })}
+              >
+                <option value={"panel"}>Պանելային</option>
+                <option value={"stone"}>Քարե</option>
+                <option value={"monolith"}>Մոնոլիտ</option>
+                <option value={"new"}>Նորակառույց</option>
               </Form.Select>
             </div>
             <div>
-              <Form.Check
-                type="switch"
-                id="new-buil-switch"
-                label="Նորակառույց"
-                {...register("new_building")}
-              />
               <Form.Check
                 type="switch"
                 id="elevator-switch"
                 label="Ունի վերելակ"
                 {...register("elevator")}
               />
-            </div>
-            <div>
-              <span>Հարկայնություն</span>
-              <InputGroup className="mb-3">
-                <Form.Control
-                  aria-describedby="basic-addon1"
-                  {...register("number_of_floors")}
-                />
-              </InputGroup>
             </div>
             <div>
               <Form.Check
@@ -289,6 +308,15 @@ const AddItem = ({ type }) => {
               </Form.Select>
             </div>
             <div>
+              <span>Հարկայնություն</span>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  aria-describedby="basic-addon1"
+                  {...register("number_of_floors")}
+                />
+              </InputGroup>
+            </div>
+            <div>
               <span>Հարկ</span>
               <Form.Select {...register("floor", { required: true })}>
                 {add_floor()}
@@ -310,6 +338,15 @@ const AddItem = ({ type }) => {
                 <option value={"Առկա է"}>Առկա է</option>
                 <option value={"Մասնակի կահույք"}>Մասնակի կահույք</option>
                 <option value={"Համաձայնությամբ"}>Համաձայնությամբ</option>
+              </Form.Select>
+            </div>
+            <div>
+              <span>Կարգավիճակ</span>
+              <Form.Select {...register("status", { required: true })}>
+                <option value={"Վերանորոգված"}>Վերանորոգված</option>
+                <option value={"Զրոյական"}>Զրոյական</option>
+                <option value={"Լավ"}>Լավ</option>
+                <option value={"Դիզայներական ոճ"}>Դիզայներական ոճ</option>
               </Form.Select>
             </div>
             <div>
@@ -381,9 +418,13 @@ const AddItem = ({ type }) => {
           <hr />
           <div className="form-panel">
             <h5 className="h_header">Գին</h5>
-            <InputGroup className="mb-3" {...register("price_usd")}>
+            <InputGroup className="mb-3">
               <InputGroup.Text>$</InputGroup.Text>
-              <Form.Control type="number" placeholder="Արժեքը դոլարով" />
+              <Form.Control
+                type="number"
+                placeholder="Արժեքը դոլարով"
+                {...register("price_usd")}
+              />
             </InputGroup>
           </div>
           <div className="form-panel">
@@ -391,39 +432,9 @@ const AddItem = ({ type }) => {
             <div
               style={{ display: "flex", flexDirection: "column", gap: "15px" }}
             >
-              <img
-                src={arm_flag}
-                className="flag_img"
-                height={"25px"}
-                width={"35px"}
-              />
               <Form.Control
                 as="textarea"
                 placeholder="Նկարագիր"
-                style={{ height: "140px" }}
-                {...register("ann_description", { required: true })}
-              />
-              <img
-                src={ru_flag}
-                className="flag_img"
-                height={"25px"}
-                width={"35px"}
-              />
-              <Form.Control
-                as="textarea"
-                placeholder="Նկարագիր ( Ռուսերեն )"
-                style={{ height: "140px" }}
-                {...register("ann_description", { required: true })}
-              />
-              <img
-                src={us_flag}
-                className="flag_img"
-                height={"25px"}
-                width={"35px"}
-              />
-              <Form.Control
-                as="textarea"
-                placeholder="Նկարագիր ( Անգլերեն )"
                 style={{ height: "140px" }}
                 {...register("ann_description", { required: true })}
               />
@@ -440,61 +451,25 @@ const AddItem = ({ type }) => {
                   as="textarea"
                   placeholder="Նկարագիր (Չի երևում հաճախորդին)"
                   style={{ height: "140px" }}
-                  {...register("ann_description", { required: true })}
+                  {...register("hidden_ann_description", { required: true })}
                 />
               </div>
-            </div>
-          </div>
-          <div className="form-panel" style={{ margin: "20px 0px 20px 0px" }}>
-            {mainImage && (
-              <div>
-                <button
-                  className="delete_img_btn"
-                  onClick={(evn) => {
-                    evn.preventDefault();
-                    setMainImage(null);
-                  }}
-                >
-                  <AiOutlineClose />
-                </button>
-                <img
-                  src={mainImage}
-                  style={{ objectFit: "cover", width: "100%" }}
-                />
-              </div>
-            )}
-            <div>
-              <Button variant="primary" style={{ cursor: "pointer" }}>
-                <label
-                  htmlFor="main_img"
-                  style={{
-                    cursor: "pointer",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "5px",
-                  }}
-                >
-                  <AiOutlineFileImage />
-                  <span>Գույքի հիմնական նկար</span>
-                </label>
-              </Button>
-              <input
-                type="file"
-                id="main_img"
-                onChange={(evn) => {
-                  setMainImage(URL.createObjectURL(evn.target.files[0]));
-                }}
-                multiple
-                required={true}
-              />
             </div>
           </div>
           <div className="form-panel">
             <div className="item-images-panel">
               {itemImages.map((el, index) => {
                 return (
-                  <div>
+                  <div
+                    onDragStart={(evn) => dragStartHandler(evn, el)}
+                    onDragLeave={(evn) => dragEndHandler(evn)}
+                    onDragEnd={(evn) => dragEndHandler(evn)}
+                    onDragOver={(evn) => dragOverHandler(evn)}
+                    onDrop={(evn) => dropHandler(evn, el)}
+                    draggable={true}
+                    key={index}
+                    className="img-box"
+                  >
                     <button
                       className="delete_img_btn"
                       onClick={(evn) => {
@@ -507,15 +482,6 @@ const AddItem = ({ type }) => {
                       <AiOutlineClose />
                     </button>
                     <img src={el} width={"100%"} />
-                    <div className="hidden_img_check">
-                      <input
-                        type="checkbox"
-                        id={el}
-                        value={index}
-                        {...register("hidden_images")}
-                      />
-                      <label htmlFor={el}>ՉԻ երևում հաճախորդին</label>
-                    </div>
                   </div>
                 );
               })}
@@ -552,15 +518,17 @@ const AddItem = ({ type }) => {
             <InputGroup className="mb-3">
               <Form.Control
                 placeholder="YouTube հղում"
+                type="url"
                 aria-describedby="basic-addon2"
-                {...register("video_url", { required: true })}
+                {...register("video_url", { required: false })}
               />
             </InputGroup>
             <div>
               <input
                 type="radio"
                 id="exclusive"
-                name="tp"
+                value={"exclusive"}
+                {...register("proposal")}
                 style={{ marginRight: "10px" }}
               />
               <label htmlFor="exclusive">Էքսկլյուզիվ</label>
@@ -569,7 +537,8 @@ const AddItem = ({ type }) => {
               <input
                 type="radio"
                 id="hatuk"
-                name="tp"
+                value={"special"}
+                {...register("proposal")}
                 style={{ marginRight: "10px" }}
               />
               <label htmlFor="hatuk">Հատուկ առաջարկ</label>
