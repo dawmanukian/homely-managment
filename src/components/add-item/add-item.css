@@ -104,6 +104,9 @@ input[type="file"] {
   object-fit: cover;
   border-radius: 12px;
 }
+.select_type label {
+  margin-right: 7px;
+}
 @media screen and (max-width: 1560px) {
   .add_item_page form {
     width: 100%;

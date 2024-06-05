@@ -15,14 +15,13 @@ const MobileLeftMenu = ({type}) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
   const select_acc = () => {
     switch (type) {
-      case 'Admin':
+      case 'admin':
         return <AdminLeftMenu />
-      case 'Manager':
+      case 'manager':
         return <ManagerLeftMenu />
-      case 'Broker':
+      case 'broker':
         return <BrokerLeftMenu />
     }
   }

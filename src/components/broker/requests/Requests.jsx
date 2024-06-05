@@ -1,30 +1,27 @@
-import React, { useState } from "react";
-import WorkerCard from "../../worker-card/WorkerCard";
-import SearchForm from "../../admin/search-form/SearchForm";
+import React, { useEffect, useState } from "react";
 import RequestCard from "../request-card/RequestCard";
 import UserMessage from "../user-message/UserMessage";
+import axios from "axios";
 
-const Requests = () => {
-  const [requests, setRequests] = useState([
-    {
-      id: Math.random(),
-      name: "Դավիթ",
-      message: "message",
-      phone: "+37494673735",
-    },
-    {
-      id: Math.random(),
-      name: "Համլետ",
-      message: "message",
-      phone: "+37494673735",
-    },
-    {
-      id: Math.random(),
-      name: "Գոհար",
-      message: "message",
-      phone: "+37494673735",
-    },
-  ]);
+const Requests = ({ id }) => {
+  const [requests, setRequests] = useState([]);
+
+  useEffect(() => {
+    const get_requests = async () => {
+      try {
+        const res = await axios.get(
+          "http://127.0.0.1:8000/api/orders/requests",
+          {
+            broker_id: id,
+          }
+        );
+        setRequests(res.data.orders);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    get_requests();
+  }, []);
 
   const [showMessage, setShowMessage] = useState(false);
   const [messageData, setMessageData] = useState({});

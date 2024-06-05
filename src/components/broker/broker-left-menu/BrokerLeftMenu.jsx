@@ -1,5 +1,4 @@
 import React from "react";
-import AccountData from "../../account-data/AccountData";
 import { Link } from "react-router-dom";
 import {
   FiFileText,
@@ -8,8 +7,23 @@ import {
   FiSettings,
   FiArrowLeftCircle,
 } from "react-icons/fi";
+import axios from "axios";
 
 const BrokerLeftMenu = () => {
+  const token = localStorage.getItem("auth_token");
+
+  const onExit = async () => {
+    try {
+      await axios.post("https://service.homely.am/api/auth/logout", {
+        token,
+      });
+      localStorage.removeItem("auth_token");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       className="left-menu-panel"
@@ -54,7 +68,7 @@ const BrokerLeftMenu = () => {
               </b>
             </div>
           </Link>
-          <div className="menu-item">
+          <div className="menu-item" onClick={() => onExit()}>
             <b>
               <FiArrowLeftCircle className="menu-icon" /> Ելք
             </b>

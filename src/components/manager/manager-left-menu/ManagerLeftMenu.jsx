@@ -8,8 +8,23 @@ import {
   FiSettings,
   FiArrowLeftCircle,
 } from "react-icons/fi";
+import axios from "axios";
 
 const ManagerLeftMenu = () => {
+  const token = localStorage.getItem("auth_token");
+
+  const onExit = async () => {
+    try {
+      const res = await axios.post("https://service.homely.am/api/auth/logout", {
+        token,
+      });
+
+      localStorage.removeItem("auth_token");
+      window.location.reload()
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div
       className="left-menu-panel"
@@ -40,7 +55,7 @@ const ManagerLeftMenu = () => {
               </b>
             </div>
           </Link>
-          <div className="menu-item">
+          <div className="menu-item" onClick={() => onExit()}>
             <b>
               <FiArrowLeftCircle className="menu-icon" /> Ելք
             </b>

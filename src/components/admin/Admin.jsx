@@ -8,23 +8,32 @@ import AllManagers from "./all-managers/AllManagers";
 import AllBrokers from "./all-brokers/AllBrokers";
 import Settings from "../settings/Settings";
 import Announcements from "../announcements/Announcements";
+import ChangeItem from "../change-item/ChangeItem";
+import ItemPage from "../item-page/ItemPage";
 
-const Admin = ({type}) => {
-
-  const [pageName, setPageName] = useState('')
+const Admin = ({ data }) => {
+  const [pageName, setPageName] = useState("");
 
   return (
     <div className="page-data">
       <Router>
-        <AdminLeftMenu type={type}/>
-        <AccountData type={'Admin'} pageName={pageName}/>
+        <AdminLeftMenu type={data.type} />
+        <AccountData userData={data} pageName={pageName} />
         <Routes>
-          <Route path={"/"} element={<AddUser />} />
-          <Route path={"/add"} element={<AddItem />} />
-          <Route path={"/managers"} element={<AllManagers />}/>
-          <Route path={"/brokers"} element={<AllBrokers />} />
-          <Route path={"/settings"} element={<Settings />} />
-          <Route path={"/all_ads"} element={<Announcements />} />
+          <Route path={"/*"} element={<Announcements userData={data} />} />
+          <Route
+            path={"/change/:itemId"}
+            element={<ChangeItem userData={data} />}
+          />
+          <Route path={"/add"} element={<AddItem userData={data} />} />
+          <Route path={"/managers"} element={<AllManagers userData={data} />} />
+          <Route path={"/brokers"} element={<AllBrokers userData={data} />} />
+          <Route path={"/settings"} element={<Settings userData={data} />} />
+          <Route path={"/item/:itemId"} element={<ItemPage />} />
+          <Route
+            path={"/add_user"}
+            element={<AddUser userData={data} />}
+          />
         </Routes>
       </Router>
     </div>

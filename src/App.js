@@ -7,30 +7,52 @@ import Manager from "./components/manager/Manager";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Loading from "./components/loading/Loading";
 import axios from "axios";
+import Login from "./components/login/Login";
 
 function App() {
-  const accType = "admin";
-
-  const [cookies, setCookie] = useCookies(["token"]);
-  const [logined, setLogined] = useState(true);
+  const [token, setToken] = useState(localStorage.getItem("auth_token"))
+  const [accType, setAccType] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  setTimeout(() => {
-    setLoading(false);
-  }, "4000");
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (token) {
+          const res = await axios.post("https://service.homely.am/api/auth/login", {
+            token,
+          });
+          if (res.data.success) {
+            setAccType(res.data.data.type);
+            setUserData(res.data.data);
+          }
+        }
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+        setLoading(false);
+      }
+    };
 
-  function selectAcc() {
+    fetchData();
+  }, [token]);
+
+  if (loading) return <Loading />;
+
+  if (userData) {
     switch (accType) {
       case "admin":
-        return <Admin />;
+        return <Admin data={userData} />;
       case "broker":
-        return <Broker />;
+        return <Broker data={userData} />;
       case "manager":
-        return <Manager />;
+        return <Manager data={userData} />;
+      default:
+        return <Login onGetData={(token) => setToken(token)}/>;
     }
   }
 
-  return <>{logined && (loading ? <Loading /> : selectAcc())}</>;
+  return <Login onGetData={(token) => setToken(token)}/>;
 }
 
 export default App;

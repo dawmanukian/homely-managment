@@ -1,93 +1,105 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./announcements.css";
-import ItemCard from "../item-card/ItemCard";
 import SearchForm from "../admin/search-form/SearchForm";
 import AnnouncementsFilter from "../announcements-filter/AnnouncementsFilter";
+import ElementCard from "../element-card/ElementCard";
+import axios from "axios";
 
-const Announcements = () => {
-  const [ann, setAnn] = useState([
-    {
-      id: 1,
-      header: "Նոր Նորք, Գյուրջյան փող",
-      item_img:
-        "https://housing.com/news/wp-content/uploads/2023/03/exterior-design-shutterstock_1932966368-1200x700-compressed.jpg",
-      address: "Գյուրջյան փող, Նոր Նորք, Երևան",
-      price_usd: "130,000",
-      price_rub: "450,000",
-      price_dram: "600,000",
-      broker_name: "Դավիթ Մանուկյան",
-      broker_phone: "+37494673735",
-      broker_email: "thedavitmanukyan@gmail.com",
-    },
-    {
-      id: 2,
-      header: "Նոր Հասցե, Այլ Նորք",
-      item_img: "https://i.pinimg.com/564x/56/df/a1/56dfa1f96fb005764fcfef238d5d56d9.jpg",
-      address: "Այլ հասցե, Հայաստան",
-      price_usd: "150,000",
-      price_rub: "500,000",
-      price_dram: "700,000",
-      broker_name: "Անուն Ազգանուն",
-      broker_phone: "+37498765432",
-      broker_email: "example@email.com",
-    },
-    {
-      id: 3,
-      header: "Ավելին՝ Պուշկինի փող, Գյումրի",
-      item_img: "https://i.pinimg.com/564x/56/df/a1/56dfa1f96fb005764fcfef238d5d56d9.jpg",
-      address: "Պուշկինի փող, Գյումրի",
-      price_usd: "180,000",
-      price_rub: "600,000",
-      price_dram: "800,000",
-      broker_name: "Գագիկ Գրիգորյան",
-      broker_phone: "+37491234567",
-      broker_email: "gagik.grigoryan@gmail.com",
-    },
-    {
-      id: 4,
-      header: "Բարձրագույն վայր, Սևան",
-      item_img: "https://i.pinimg.com/564x/96/9e/29/969e29466c4040aa181f7d80e6cac331.jpg",
-      address: "Լուսավորչի փող, Երևան",
-      price_usd: "200,000",
-      price_rub: "700,000",
-      price_dram: "900,000",
-      broker_name: "Աննա Անանյան",
-      broker_phone: "+37499887766",
-      broker_email: "anna.ananyan@gmail.com",
-    },
-    {
-      id: 5,
-      header: "Վերֆելի վայր, Սևան",
-      item_img: "https://i.pinimg.com/564x/9f/e3/01/9fe30127806487440ab6a36ee165d58e.jpg",
-      address: "Բարձրագույն վայր, Սևան",
-      price_usd: "250,000",
-      price_rub: "850,000",
-      price_dram: "1,100,000",
-      broker_name: "Ռաֆֆի Ռաֆֆիան",
-      broker_phone: "+37495555000",
-      broker_email: "raffi.raffian@gmail.com",
-    },
-  ]);
-  const [showData, setShowData] = useState(ann);
+const Announcements = ({ userData }) => {
+  const [ann, setAnn] = useState([]);
+  const [brokers, setBrokers] = useState([]);
+  const [annImages, setAnnImages] = useState([]);
+
+  useEffect(() => {
+    const get_items = async () => {
+      try {
+        const { data } = await axios.get(
+          "https://service.homely.am/api/items/all"
+        );
+        setAnn(data.all_items.reverse());
+        
+        setAnnImages(() => data.all_images);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    get_items();
+    const get_brokers = async () => {
+      try {
+        const { data } = await axios.get(
+          "https://service.homely.am/api/admin/get_all"
+        );
+        setBrokers(() => data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    get_brokers();
+  }, []);
+
   return (
     <div className="workers-page">
-      <div style={{ height: "100px" }}></div> 
-      <AnnouncementsFilter
-        onSearch={(search) => {
-          search !== ""
-            ? setShowData(
-                ann.filter(
-                  (el) =>
-                    el.broker_phone === `+374${search}` ||
-                    el.header.toLowerCase().startsWith(search.toLowerCase())
-                )
-              )
-            : setShowData(ann);
-        }}
-      />
-      <div className="all-items">
-        {showData.map((el) => {
-          return <ItemCard data={el} />;
+      <div style={{ height: "100px" }}></div>
+      <AnnouncementsFilter />
+      <div className="all_ann">
+        {ann.map((el) => {
+          const itemIMAGES = annImages.filter((e) => e.item_id == el.id);
+          const brokerData = brokers.filter((e) => e.id === Number(el.adminid));
+          return (
+            <div className="el_data_card">
+              <ElementCard
+                price={el.price}
+                id={el.id}
+                img={
+                  itemIMAGES[0] &&
+                  `https://service.homely.am/storage/images/${itemIMAGES[0].image}`
+                }
+                title={el.title}
+                status={null}
+                area={el.area}
+                bathrooms={el.number_of_bathrooms}
+                rooms={el.number_of_rooms}
+                number_of_floors={el.number_of_floors}
+                floors={el.floor}
+                item_status={el.item_status}
+                hidden_des={el.description_hidden}
+                admin_id={el.adminid}
+                user_id={userData.id}
+                user_type={userData.type}
+              />
+              <div className="broker_owner_info">
+                {(userData.type !== "broker" || Number(el.adminid) === Number(userData.id)) && (
+                  <>
+                    <b>Գույքի տեր</b>
+                    <div className="owner_data">
+                      <span>{el.owner_name}</span>
+                      <b>{el.owner_phone}</b>
+                    </div>
+                    <hr />
+                  </>
+                )}
+                <b>Գործակալ</b>
+                <br />
+                {brokerData.map((element) => {
+                  return (
+                    <div className="broker_info">
+                      <div>
+                        <span>
+                          {element.name} {element.surname}
+                        </span>
+                        <br />
+                        <b>{element.phone}</b>
+                        <br />
+                        <b>{element.email}</b>
+                      </div>
+                      <img src={element.image} />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
         })}
       </div>
     </div>

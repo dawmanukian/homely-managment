@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./add-user.css";
 import { useForm } from "react-hook-form";
-import { FiUserPlus } from "react-icons/fi";
 import axios from "axios";
 
 const AddUser = () => {
+  const api_url = process.env.REACT_APP_BACKEND_URL;
+
   const {
     handleSubmit,
     formState: { errors },
     register,
   } = useForm();
 
-  const onSubmit = (data) => {
+  const [showLoading, setShowLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const onSubmit = async (data) => {
+    setShowLoading(true);
     try {
-      axios.post('http://127.0.0.1:8000/api/admin/create/user', data)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+      const res = await axios.post(
+        `https://service.homely.am/api/admin/create/user`,
+        data
+      );
+      setSuccess(res.data.success);
     } catch (error) {
       console.log(error);
+    } finally {
+      setShowLoading(false);
     }
   };
 
@@ -26,12 +35,12 @@ const AddUser = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           placeholder={"Անուն"}
-          {...register("userName", { required: true })}
+          {...register("username", { required: true })}
           className="add-inpt"
         />
         <input
           placeholder={"Ազգանուն"}
-          {...register("surName", { required: true })}
+          {...register("surname", { required: true })}
           className="add-inpt"
         />
         <input
@@ -54,8 +63,8 @@ const AddUser = () => {
             <input
               id="type_broker"
               type="radio"
-              value={'broker'}
-              {...register("accountType", {
+              value={"broker"}
+              {...register("type", {
                 required: true,
               })}
             />
@@ -64,9 +73,9 @@ const AddUser = () => {
           <label htmlFor="type_manager">
             <input
               id="type_manager"
-              value={'manager'}
+              value={"manager"}
               type="radio"
-              {...register("accountType", {
+              {...register("type", {
                 required: true,
               })}
             />
@@ -75,16 +84,19 @@ const AddUser = () => {
           <label htmlFor="type_admin">
             <input
               id="type_admin"
-              value={'admin'}
+              value={"admin"}
               type="radio"
-              {...register("accountType", {
+              {...register("type", {
                 required: true,
               })}
             />
             <span>Ադմին</span>
           </label>
         </div>
-        <button type="submit">Ավելացնել</button>
+        <button type="submit">
+          {showLoading ? <span className="loader"></span> : "Ավելացնել"}
+        </button>
+        {success && <p style={{ color: "green" }}>Օգտանունը ավելացվել է</p>}
       </form>
     </div>
   );

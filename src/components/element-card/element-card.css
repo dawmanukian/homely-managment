@@ -1,0 +1,126 @@
+.el-card {
+  width: 100%;
+  max-width: 540px;
+  background: #fff;
+  color: #333;
+  border-radius: 17px;
+  position: relative;
+}
+.card-img {
+  border-radius: 17px 17px 0px 0px;
+  height: 250px;
+  object-fit: cover;
+}
+.card-data {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 13px;
+}
+.card-price {
+  font-weight: 700;
+  font-size: 25px;
+}
+.card-head {
+  position: relative;
+}
+.card-id {
+  background: #f4f4f4;
+  border-radius: 12px;
+  padding: 5px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 13px 13px 13px;
+  width: 100%;
+  bottom: 0px;
+}
+.el-card-link {
+  text-decoration: none;
+  color: #333;
+}
+.card-title {
+  font-size: 18px;
+}
+.card-type {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  gap: 5px;
+  padding: 9px;
+  border-radius: 12px;
+}
+.ex {
+  background: #1c1e2bff;
+}
+.dis {
+  background: rgb(69, 72, 139);
+}
+.cardstitle {
+  font-size: 30px;
+}
+.icon-div {
+  display: flex;
+  gap: 3px;
+  padding: 6px;
+  border-radius: 7px;
+  font-size: 18px;
+  background: #f0f2f5ff;
+  color: gray;
+}
+.icon-div span {
+  font-size: 16px;
+  font-weight: bold;
+}
+.crd_btns {
+  margin-bottom: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 0px 0px 13px 13px;
+}
+.crd_btns button {
+  height: 40px;
+  padding: 0px 13px 0px 13px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+}
+.crd_btns button:nth-child(1) {
+  background: rgb(209, 40, 40);
+}
+.crd_btns button:nth-child(2) {
+  background: orange;
+}
+.crd_btns button:nth-child(3) {
+  background: #1c1e2bff;
+}
+.img_cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 17px 17px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+@media screen and (max-width: 1356px) {
+  .el-card {
+    min-width: 50%;
+  }
+}
+@media screen and (max-width: 721px) {
+  .el-card {
+    min-width: 100%;
+  }
+}

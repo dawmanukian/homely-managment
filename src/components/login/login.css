@@ -1,0 +1,18 @@
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f6f8faff;
+  padding: 15px;
+}
+.wrapper form {
+  background: #fff;
+  padding: 25px;
+  display: grid;
+  border-radius: 15px;
+}
+.wrapper button {
+  margin-top: 15px;
+}

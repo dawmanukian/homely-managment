@@ -1,4 +1,36 @@
-.all-an {
-    width: 100%;
-    background: red;
+.all_ann {
+  display: grid;
+  justify-content: center;
+  gap: 25px;
+  padding: 20px;
+  grid-template-columns: 530px 530px;
+  grid-auto-columns: 150px;
+}
+.broker_owner_info {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+}
+.owner_data {
+  display: flex;
+  justify-content: space-between;
+}
+.broker_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.broker_info img {
+  border-radius: 50%;
+  height: 90px;
+  width: 90px;
+  object-fit: cover;
+  border: 4px solid #1c1e2bff;
+  padding: 3px;
+}
+@media screen and (max-width: 1120px) {
+  .all_ann {
+    grid-template-columns: 100%;
+  }
 }

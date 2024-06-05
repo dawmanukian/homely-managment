@@ -2,18 +2,18 @@ import React from "react";
 import "./account-data.css";
 import MobileLeftMenu from "../mobile-left-menu/MobileLeftMenu";
 
-const AccountData = ({ type }) => {
+const AccountData = ({ userData }) => {
   return (
     <div className="account-data">
       <img
-        src="https://www.catbreedslist.com/cat-wallpapers/white-kitten-cute-big-eyes-art-1024x768.jpg"
+        src={userData.image}
         className="account-img"
       />
       <div className="account-name">
-        <span>Դավիթ Մանուկյան</span>
-        <b>{type}</b>
+        <span>{userData.name} {userData.surname}</span>
+        <b>{userData.type}</b>
       </div>
-      <MobileLeftMenu type={type}/>
+      <MobileLeftMenu type={userData.type}/>
     </div>
   );
 };

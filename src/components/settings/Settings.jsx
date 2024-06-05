@@ -4,8 +4,12 @@ import { FaCameraRotate } from "react-icons/fa6";
 
 const Settings = () => {
   const [profileImg, setProfileImg] = useState(
-    'https://www.computerhope.com/jargon/g/guest-user.png'
+    "https://www.computerhope.com/jargon/g/guest-user.png"
   );
+
+  // onSubmit = () => {
+
+  // }
 
   return (
     <div className="settings">
@@ -37,16 +41,7 @@ const Settings = () => {
             margin: "25px 0px 0px 0px",
           }}
         >
-          <div className="user-data">
-            <input placeholder="Անուն" />
-            <input placeholder="Ազգանուն" />
-          </div>
-          <b>Փոխել գաղտնաբառը</b>
-          <div className="user-data">
-            <input placeholder="Հին գաղտնաբառ" />
-            <input placeholder="Նոր գաղտնաբառ" />
-          </div>
-          <button className="save-btn">Պահպանել փոփոխությունները</button>
+          <button className="save-btn">Պահպանել</button>
         </div>
       </form>
     </div>

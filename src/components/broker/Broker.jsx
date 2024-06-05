@@ -8,23 +8,27 @@ import Settings from "../settings/Settings";
 import Requests from "./requests/Requests";
 import Announcements from "../announcements/Announcements";
 import MyAnnouncements from "./my-announcements/MyAnnouncements";
+import ChangeItem from "../change-item/ChangeItem";
+import ItemPage from "../item-page/ItemPage";
 
-const Broker = ({ type }) => {
+const Broker = ({ data }) => {
   return (
     <div className="page-data">
       <Router>
-        <BrokerLeftMenu type={type} />
-        <AccountData type={"Broker"} />
+        <BrokerLeftMenu type={data.type} />
+        <AccountData userData={data} />
         <Routes>
-          <Route path="/*" element={<AddItem type={'Broker'}/>} />
-          <Route path="/settings" element={<Settings />}/>
-          <Route path="/requests" element={<Requests />}/>
-          <Route path="/all_ads" element={<Announcements />} />
-          <Route path="/my_ads" element={<MyAnnouncements />} />
+          <Route path="/*" element={<Announcements userData={data}/>} />
+          <Route path={"/change/:itemId"} element={<ChangeItem userData={data}/>} />
+          <Route path={"/item/:itemId"} element={<ItemPage />} />
+          <Route path="/settings" element={<Settings userData={data}/>} />
+          <Route path="/requests" element={<Requests userData={data}/>} />
+          <Route path="/add" element={<AddItem userData={data}/>} />
+          <Route path="/my_ads" element={<MyAnnouncements userData={data}/>} />
         </Routes>
       </Router>
     </div>
-  );  
+  );
 };
 
 export default Broker;
