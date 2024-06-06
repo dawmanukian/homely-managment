@@ -64,7 +64,9 @@ const ElementCard = ({
       <div className="card-data">
         <b className="card-title">{title}</b>
         <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
-          <div className="icon-div">
+         {item_status ? (
+          <>
+            <div className="icon-div">
             <TbStairsUp />
             <span>
               {floors} / {number_of_floors}
@@ -82,6 +84,8 @@ const ElementCard = ({
             <FaShower />
             <span>{bathrooms}</span>
           </div>
+          </>
+         ) : ''}
         </div>
         <span className="card-price">$ {price}</span>
       </div>

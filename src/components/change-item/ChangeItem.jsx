@@ -10,9 +10,11 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { useNavigate } from "react-router-dom";
 
 const ChangeItem = ({ userData }) => {
   const itemId = useParams();
+  const navigate = useNavigate(); // Использование useNavigate для получения navigate функции
 
   const [itemData, setItemData] = useState(null);
   const [itemImages, setItemImages] = useState([]);
@@ -82,6 +84,8 @@ const ChangeItem = ({ userData }) => {
       console.log(res)
       setDisableBtn(false);
       showSwal();
+      navigate('/');
+
     } catch (error) {
       console.log(error);
     }
