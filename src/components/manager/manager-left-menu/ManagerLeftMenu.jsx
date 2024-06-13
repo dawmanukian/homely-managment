@@ -9,6 +9,7 @@ import {
   FiArrowLeftCircle,
 } from "react-icons/fi";
 import axios from "axios";
+import logo from "../../../img/Screenshot 2024-06-11 170048.png"
 
 const ManagerLeftMenu = () => {
   const token = localStorage.getItem("auth_token");
@@ -31,7 +32,8 @@ const ManagerLeftMenu = () => {
       style={{ width: "300px", position: "relative" }}
     >
       <div className="left-menu">
-        <div>
+        <div style={{textAlign: "center"}}>
+          <img src={logo} alt="" width={'200px'}/>
           <Link to={"/add"}>
             <div className="menu-item">
               <b>

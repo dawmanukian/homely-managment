@@ -45,14 +45,20 @@ const AddItem = ({ userData }) => {
   const [region, setRegion] = useState("Աջափնյակ");
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
-  const [adminId, setAdminId] = useState(userData.id);
+  const [adminId, setAdminId] = useState(() => {
+    if (userData.type === "manager") {
+      return 82
+    }else {
+      return userData.id
+    }
+  });
   const [marz, setMarz] = useState("yerevan");
   const [type, setType] = useState("rent");
   const [itemType, setItemType] = useState("Բնակարան");
 
   const onSubmit = async (data) => {
     const formData = new FormData();
-    data = { ...data, adminid: adminId, street: streetName, type: type };
+    data = { ...data, adminid: adminId, street: streetName, type: type, item_type: itemType };
 
     items.forEach((el, index) => {
       formData.append(`file${index}`, el);
@@ -97,22 +103,25 @@ const AddItem = ({ userData }) => {
     setDragging(false);
   };
 
-  // useEffect(() => {
-  //   const get_all_brokers = async () => {
-  //     try {
-  //       const { data } = await axios.get(
-  //         "https://service.homely.am/api/admin/get_all"
-  //       );
-  //       setBrokers(data.data.filter((el) => el.type !== "manager"));
-  //       setAdminId(broker[0].id);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   if (userData.type === "manager") {
-  //     get_all_brokers();
-  //   }
-  // }, []);
+  const [broker, setBrokers] = useState([])
+
+  useEffect(() => {
+    const get_all_brokers = async () => {
+      try {
+        const { data } = await axios.get(
+          "https://service.homely.am/api/admin/get_all"
+        );
+        setBrokers(data.data.filter((el) => el.type == "broker"));
+        setAdminId(broker[0].id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (userData.type === "manager") {
+      get_all_brokers();
+    }
+  }, []);
+
 
   return (
     <>
@@ -127,17 +136,17 @@ const AddItem = ({ userData }) => {
                   id="type__1"
                   type="radio"
                   value={"Բնակարան"}
-                  name="type"
+                  name="item_status"
                   onClick={(evn) => setItemType(() => evn.target.value)}
                 />
               </div>
               <div>
-                <label htmlFor="type__2">Տուն</label>
+                <label htmlFor="type__2">Առանձնատուն</label>
                 <input
                   id="type__2"
                   type="radio"
-                  value={"Տուն"}
-                  name="type"
+                  value={"Առանձնատուն"}
+                  name="item_status"
                   onClick={(evn) => setItemType(() => evn.target.value)}
                 />
               </div>
@@ -147,7 +156,7 @@ const AddItem = ({ userData }) => {
                   id="type__3"
                   type="radio"
                   value={"Կոմերցիոն"}
-                  name="type"
+                  name="item_status"
                   onClick={(evn) => setItemType(() => evn.target.value)}
                 />
               </div>
@@ -157,42 +166,46 @@ const AddItem = ({ userData }) => {
                   id="type__4"
                   type="radio"
                   value={"Հողատարածք"}
-                  name="type"
+                  name="item_status"
                   onClick={(evn) => setItemType(() => evn.target.value)}
                 />
               </div>
             </div>
           </div>
-          {/* {userData.type === "manager" && (
-            <Form.Select
-              style={{ marginBottom: "17px" }}
-              className="form-panel"
-              aria-label="Default select example"
-              onChange={(evn) => setAdminId(Number(evn.target.value))}
-            >
-              {broker.map((el) => {
-                return (
-                  <option key={el.id} value={el.id}>
-                    {el.name} {el.surname}
-                  </option>
-                );
-              })}
-            </Form.Select>
-          )} */}
+          <hr />
+          <h5 className="h_header">Գործակալ</h5>
+          {userData.type === "manager" && (
+            <>
+              <Form.Select
+                style={{ marginBottom: "17px" }}
+                className="form-panel"
+                aria-label="Default select example"
+                onChange={(evn) => setAdminId(Number(evn.target.value))}
+              >
+                {broker.map((el) => {
+                  return (
+                    <option key={el.id} value={el.id}>
+                      {el.name} {el.surname}
+                    </option>
+                  );
+                })}
+              </Form.Select>
+            </>
+          )}
           {itemType === "Բնակարան" ? (
             <>
               <div className="form-panel">
                 <InputGroup className="mb-3">
                   <Form.Control
                     aria-describedby="basic-addon1"
-                    placeholder="Անուն Ազգանուն"
+                    placeholder="Անուն Ազգանուն (գույքի տեր)"
                     {...register("owner_name")}
                   />
                 </InputGroup>
                 <InputGroup className="mb-3">
                   <Form.Control
                     aria-describedby="basic-addon1"
-                    placeholder="Հեռ․ համար"
+                    placeholder="Հեռ․ համար (գույքի տեր)"
                     {...register("owner_phone")}
                   />
                 </InputGroup>
@@ -499,10 +512,11 @@ const AddItem = ({ userData }) => {
                 <div>
                   <span>Կարգավիճակ</span>
                   <Form.Select {...register("status", { required: true })}>
-                    <option value={"Վերանորոգված"}>Վերանորոգված</option>
-                    <option value={"Զրոյական"}>Զրոյական</option>
-                    <option value={"Լավ"}>Լավ</option>
+                    <option value={"Չվերանորոգված"}>Չվերանորոգված</option>
+                    <option value={"Հին վերանորոգում"}>Հին վերանորոգում</option>
+                    <option value={"Եվրովերանորոգված"}>Եվրովերանորոգված</option>
                     <option value={"Դիզայներական ոճ"}>Դիզայներական ոճ</option>
+                    <option value={"Կապիտալ վերանորոգված"}>Կապիտալ վերանորոգված</option>
                   </Form.Select>
                 </div>
                 <div>
@@ -718,13 +732,13 @@ const AddItem = ({ userData }) => {
                 Ավելացնել
               </Button>
             </>
-          ) : itemType === "Տուն" ? (
+          ) : itemType === "Առանձնատուն" ? (
             <>
               <div className="form-panel">
                 <InputGroup className="mb-3">
                   <Form.Control
                     aria-describedby="basic-addon1"
-                    placeholder="Անուն Ազգանուն"
+                    placeholder="Անուն Ազգանուն (գույքի տեր)"
                     {...register("owner_name")}
                   />
                 </InputGroup>
@@ -954,11 +968,21 @@ const AddItem = ({ userData }) => {
               <div className="form-panel">
                 <h5 className="h_header">Գույքի մասին</h5>
                 <div>
-                  <span>Մակերես</span>
+                  <span>Տան մակերես</span>
                   <InputGroup className="mb-3">
                     <Form.Control
                       aria-describedby="basic-addon2"
                       {...register("area", { required: true })}
+                    />
+                    <InputGroup.Text id="basic-addon2">ք․ մ․</InputGroup.Text>
+                  </InputGroup>
+                </div>
+                <div>
+                  <span>Հողատարածքի մակերես</span>
+                  <InputGroup className="mb-3">
+                    <Form.Control
+                      aria-describedby="basic-addon2"
+                      {...register("area_plot_own_house", { required: true })}
                     />
                     <InputGroup.Text id="basic-addon2">ք․ մ․</InputGroup.Text>
                   </InputGroup>
@@ -1043,10 +1067,11 @@ const AddItem = ({ userData }) => {
                 <div>
                   <span>Կարգավիճակ</span>
                   <Form.Select {...register("status", { required: true })}>
-                    <option value={"Վերանորոգված"}>Վերանորոգված</option>
-                    <option value={"Զրոյական"}>Զրոյական</option>
-                    <option value={"Լավ"}>Լավ</option>
+                    <option value={"Չվերանորոգված"}>Չվերանորոգված</option>
+                    <option value={"Հին վերանորոգում"}>Հին վերանորոգում</option>
+                    <option value={"Եվրովերանորոգված"}>Եվրովերանորոգված</option>
                     <option value={"Դիզայներական ոճ"}>Դիզայներական ոճ</option>
+                    <option value={"Կապիտալ վերանորոգված"}>Կապիտալ վերանորոգված</option>
                   </Form.Select>
                 </div>
                 <div>
@@ -1247,7 +1272,7 @@ const AddItem = ({ userData }) => {
                 <InputGroup className="mb-3">
                   <Form.Control
                     aria-describedby="basic-addon1"
-                    placeholder="Անուն Ազգանուն"
+                    placeholder="Անուն Ազգանուն (գույքի տեր)"
                     {...register("owner_name")}
                   />
                 </InputGroup>
@@ -1561,10 +1586,11 @@ const AddItem = ({ userData }) => {
                 <div>
                   <span>Կարգավիճակ</span>
                   <Form.Select {...register("status", { required: true })}>
-                    <option value={"Վերանորոգված"}>Վերանորոգված</option>
-                    <option value={"Զրոյական"}>Զրոյական</option>
-                    <option value={"Լավ"}>Լավ</option>
+                    <option value={"Չվերանորոգված"}>Չվերանորոգված</option>
+                    <option value={"Հին վերանորոգում"}>Հին վերանորոգում</option>
+                    <option value={"Եվրովերանորոգված"}>Եվրովերանորոգված</option>
                     <option value={"Դիզայներական ոճ"}>Դիզայներական ոճ</option>
+                    <option value={"Կապիտալ վերանորոգված"}>Կապիտալ վերանորոգված</option>
                   </Form.Select>
                 </div>
                 <div>
@@ -1745,7 +1771,7 @@ const AddItem = ({ userData }) => {
                 <InputGroup className="mb-3">
                   <Form.Control
                     aria-describedby="basic-addon1"
-                    placeholder="Անուն Ազգանուն"
+                    placeholder="Անուն Ազգանուն (գույքի տեր)"
                     {...register("owner_name")}
                   />
                 </InputGroup>

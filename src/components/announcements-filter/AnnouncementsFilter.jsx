@@ -14,7 +14,7 @@ const AnnouncementsFilter = () => {
   const { register, handleSubmit } = useForm();
 
   const [openPanelNum, setOpenPanelNum] = useState(null);
-  const [showMorePanel, setShowMorePanel] = useState(false);
+  const [showMorePanel, setShowMorePanel] = useState(true);
 
   const [streetName, setStreetName] = useState("");
   const [regionName, setRegionName] = useState([]);
@@ -298,17 +298,6 @@ const AnnouncementsFilter = () => {
                   </label>
                 </div>
               </div>
-            </div>
-            <div
-              className={`fill-div ${showMorePanel && "opened"}`}
-              onClick={() => setShowMorePanel(!showMorePanel)}
-            >
-              {"Տեսնել ավելին"}{" "}
-              {showMorePanel ? (
-                <FaChevronUp style={{ marginLeft: "10px" }} />
-              ) : (
-                <FaChevronDown style={{ marginLeft: "10px" }} />
-              )}
             </div>
             <button className="search-btn" type="submit">
               {"Որոնել"}

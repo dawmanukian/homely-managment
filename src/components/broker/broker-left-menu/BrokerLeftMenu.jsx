@@ -8,6 +8,7 @@ import {
   FiArrowLeftCircle,
 } from "react-icons/fi";
 import axios from "axios";
+import logo from "../../../img/Screenshot 2024-06-11 170048.png"
 
 const BrokerLeftMenu = () => {
   const token = localStorage.getItem("auth_token");
@@ -30,7 +31,8 @@ const BrokerLeftMenu = () => {
       style={{ width: "300px", position: "relative" }}
     >
       <div className="left-menu">
-        <div>
+        <div style={{textAlign: 'center'}}>
+        <img src={logo} alt="" width={'200px'}/>
           <Link to={"/add"}>
             <div className="menu-item">
               <b>
@@ -52,13 +54,13 @@ const BrokerLeftMenu = () => {
               </b>
             </div>
           </Link>
-          <Link to={"/all_ads"}>
+          {/* <Link to={"/all_ads"}>
             <div className="menu-item">
               <b>
                 Հայտարարություններ <FiDatabase className="menu-icon" />
               </b>
             </div>
-          </Link>
+          </Link> */}
         </div>
         <div>
           <Link to={"/settings"}>

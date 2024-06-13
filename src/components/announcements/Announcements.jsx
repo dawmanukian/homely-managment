@@ -67,6 +67,8 @@ const Announcements = ({ userData }) => {
                 admin_id={el.adminid}
                 user_id={userData.id}
                 user_type={userData.type}
+                all={el}
+
               />
               <div className="broker_owner_info">
                 {(userData.type !== "broker" || Number(el.adminid) === Number(userData.id)) && (

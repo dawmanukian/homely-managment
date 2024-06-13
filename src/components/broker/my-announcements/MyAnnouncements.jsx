@@ -14,13 +14,13 @@ const MyAnnouncements = ({ userData }) => {
     const get_items = async () => {
       try {
         const { data } = await axios.get(
-          "http://service.homely.am/api/broker/items",
+          "https://service.homely.am/api/broker/items",
           {
             params: { adminid: String(userData.id) },
           }
         );
 
-        setAnn(data.all_items);
+        setAnn(data.all_items.reverse());
         setAnnImages(data.all_images);
       } catch (error) {
         console.log(error);
@@ -37,7 +37,7 @@ const MyAnnouncements = ({ userData }) => {
           textAlign: "center",
           color: "#fff",
           fontSize: "18px",
-          background: "#246BFD",
+          background: "#202137",
           paddingBottom: "15px",
           paddingTop: "15px"
         }}
@@ -69,6 +69,8 @@ const MyAnnouncements = ({ userData }) => {
                 hidden_des={el.description_hidden}
                 admin_id={el.adminid}
                 user_id={userData.id}
+                user_type={userData.type}
+                all={el}
               />
               <div className="broker_owner_info">
                 {(userData.type !== "broker" ||

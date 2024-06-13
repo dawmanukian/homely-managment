@@ -18,7 +18,7 @@ const Broker = ({ data }) => {
         <BrokerLeftMenu type={data.type} />
         <AccountData userData={data} />
         <Routes>
-          <Route path="/*" element={<Announcements userData={data}/>} />
+          <Route path="/*" element={<MyAnnouncements userData={data}/>} />
           <Route path={"/change/:itemId"} element={<ChangeItem userData={data}/>} />
           <Route path={"/item/:itemId"} element={<ItemPage />} />
           <Route path="/settings" element={<Settings userData={data}/>} />
